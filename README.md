@@ -1,10 +1,10 @@
 # Capper
 
-[![PyPI version](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
-[![Python 3.9+](https://img.shields.io/pypi/pyversions/capper.svg)](https://pypi.org/project/capper/)
-[![CI](https://github.com/eddiethedean/capper/actions/workflows/publish.yml/badge.svg)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
-[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://docs.astral.sh/ruff/)
-[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+[![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
+[![Python](https://img.shields.io/pypi/pyversions/capper.svg)](https://pypi.org/project/capper/)
+[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/publish.yml?branch=main)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
+[![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
+[![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 
 Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automatic [Polyfactory](https://polyfactory.litestar.dev/) integration.
 
