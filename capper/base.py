@@ -26,7 +26,11 @@ def _install_pydantic_schema() -> None:
 
 
 class FakerType(str):
-    """Base for semantic Faker types. Subclasses are auto-registered with Polyfactory."""
+    """Base for semantic Faker types. Subclasses are auto-registered with Polyfactory.
+
+    Subclasses may set ``faker_kwargs`` to a dict of keyword arguments passed to the
+    Faker provider (e.g. ``faker_kwargs = {"nb_words": 10}`` for ``sentence``).
+    """
 
     faker_provider: str = ""
 
@@ -42,7 +46,10 @@ _install_pydantic_schema()
 
 def _register(cls: type, provider_name: str) -> None:
     """Register a FakerType subclass with Polyfactory."""
+    provider_kwargs = getattr(cls, "faker_kwargs", None) or {}
     BaseFactory.add_provider(
         cls,
-        lambda _cls=cls, _name=provider_name: getattr(faker, _name)(),
+        lambda _cls=cls, _name=provider_name, _kwargs=provider_kwargs: getattr(
+            faker, _name
+        )(**_kwargs),
     )

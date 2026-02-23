@@ -33,3 +33,20 @@ def test_user_factory_builds_batch() -> None:
         assert isinstance(user, User)
         assert len(user.name) > 0
         assert "@" in user.email
+
+
+def test_capper_types_auto_registered_with_polyfactory() -> None:
+    """Importing capper registers all public types; Polyfactory can build models using them."""
+    from capper import PhoneNumber
+    from polyfactory.factories.pydantic_factory import ModelFactory
+    from pydantic import BaseModel
+
+    class Contact(BaseModel):
+        phone: PhoneNumber
+
+    class ContactFactory(ModelFactory[Contact]):
+        pass
+
+    contact = ContactFactory.build()
+    assert isinstance(contact.phone, (str, PhoneNumber))
+    assert len(contact.phone) > 0

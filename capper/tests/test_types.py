@@ -7,18 +7,27 @@ from capper import (
     City,
     Company,
     Country,
+    CountryCallingCode,
+    CreditCardExpiry,
+    CreditCardNumber,
+    CreditCardProvider,
     Currency,
     Date,
     DateTime,
     Email,
     FirstName,
     IP,
+    Job,
     LastName,
     Name,
+    Paragraph,
+    PhoneNumber,
     Price,
     Product,
+    Sentence,
     Time,
     URL,
+    UserName,
 )
 
 
@@ -28,12 +37,14 @@ from capper import (
         Name,
         FirstName,
         LastName,
+        Job,
         Address,
         City,
         Country,
         Email,
         URL,
         IP,
+        UserName,
         Company,
         Product,
         Currency,
@@ -41,6 +52,13 @@ from capper import (
         Date,
         DateTime,
         Time,
+        Paragraph,
+        Sentence,
+        PhoneNumber,
+        CountryCallingCode,
+        CreditCardNumber,
+        CreditCardExpiry,
+        CreditCardProvider,
     ],
 )
 def test_type_generates_non_empty_string(type_class: type) -> None:
@@ -52,3 +70,31 @@ def test_type_generates_non_empty_string(type_class: type) -> None:
     value = getattr(faker, provider_name)()
     assert isinstance(value, (str, type_class))
     assert len(str(value)) > 0
+
+
+def test_faker_kwargs_support() -> None:
+    """Types can set faker_kwargs; provider is called with those kwargs."""
+    from capper.base import FakerType
+
+    class ShortSentence(FakerType):
+        faker_provider = "sentence"
+        faker_kwargs = {"nb_words": 5}
+
+    from faker import Faker
+
+    faker = Faker()
+    value = getattr(faker, "sentence")(**ShortSentence.faker_kwargs)
+    assert isinstance(value, str) and len(value) > 0
+
+    # Polyfactory uses the same kwargs via registration
+    from polyfactory.factories.pydantic_factory import ModelFactory
+    from pydantic import BaseModel
+
+    class Model(BaseModel):
+        text: ShortSentence
+
+    class ModelFactory(ModelFactory[Model]):
+        pass
+
+    instance = ModelFactory.build()
+    assert isinstance(instance.text, (str, ShortSentence)) and len(instance.text) > 0

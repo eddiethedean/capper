@@ -13,3 +13,7 @@ class FirstName(FakerType):
 
 class LastName(FakerType):
     faker_provider = "last_name"
+
+
+class Job(FakerType):
+    faker_provider = "job"

@@ -13,3 +13,7 @@ class URL(FakerType):
 
 class IP(FakerType):
     faker_provider = "ipv4"
+
+
+class UserName(FakerType):
+    faker_provider = "user_name"
