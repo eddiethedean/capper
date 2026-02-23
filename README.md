@@ -98,7 +98,7 @@ Works automatically. No extra steps. IDE autocompletion.
 - **Finance**: `CreditCardNumber`, `CreditCardExpiry`, `CreditCardProvider`
 
 Import from the top level: `from capper import Name, Email, Address, ...`  
-See [docs/FAKER_PROVIDERS.md](docs/FAKER_PROVIDERS.md) for the Faker provider used by each type.
+See [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) for the Faker provider used by each type.
 
 **Optional kwargs:** Subclass `FakerType` and set `faker_kwargs` to pass arguments to the Faker provider (e.g. `faker_kwargs = {"nb_words": 10}` for `Sentence`).
 
@@ -106,7 +106,7 @@ See [docs/FAKER_PROVIDERS.md](docs/FAKER_PROVIDERS.md) for the Faker provider us
 
 ## Compatibility
 
-Capper targets **Faker >= 20.0** and **Polyfactory >= 2.0**. Major Faker upgrades may change or rename provider methods; if a type fails, check [Faker's changelog](https://faker.readthedocs.io/en/stable/changelog.html) and [docs/FAKER_PROVIDERS.md](docs/FAKER_PROVIDERS.md) and update the provider name if needed.
+Capper targets **Faker >= 20.0** and **Polyfactory >= 2.0**. Major Faker upgrades may change or rename provider methods; if a type fails, check [Faker's changelog](https://faker.readthedocs.io/en/stable/changelog.html) and [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) and update the provider name if needed.
 
 ## Development
 
@@ -142,7 +142,7 @@ Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is cr
 
 ## Publishing
 
-Releases are built and published to PyPI via [GitHub Actions](.github/workflows/publish.yml). To publish:
+Releases are built and published to PyPI via [GitHub Actions](https://github.com/eddiethedean/capper/blob/main/.github/workflows/publish.yml). To publish:
 
 1. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
 2. Create a GitHub release (tag e.g. `v0.1.0`). The workflow runs tests, builds the package, and uploads to PyPI.
@@ -151,7 +151,7 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
 
 ## Links
 
-- [Documentation index](docs/README.md) — overview of all docs
-- [Package plan](docs/capper_package_plan.md) — design and rationale
-- [Roadmap](docs/ROADMAP.md) — development phases and status
-- [Faker provider mapping](docs/FAKER_PROVIDERS.md) — type-to-provider reference
+- [Documentation index](https://github.com/eddiethedean/capper/blob/main/docs/README.md) — overview of all docs
+- [Package plan](https://github.com/eddiethedean/capper/blob/main/docs/capper_package_plan.md) — design and rationale
+- [Roadmap](https://github.com/eddiethedean/capper/blob/main/docs/ROADMAP.md) — development phases and status
+- [Faker provider mapping](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) — type-to-provider reference
