@@ -3,11 +3,26 @@
 from typing import Any
 
 from faker import Faker
-from pydantic import GetCoreSchemaHandler
-from pydantic_core import CoreSchema, core_schema
 from polyfactory.factories.base import BaseFactory
 
 faker = Faker()
+
+
+def _install_pydantic_schema() -> None:
+    """If Pydantic is installed, add __get_pydantic_core_schema__ to FakerType."""
+    try:
+        from pydantic import GetCoreSchemaHandler
+        from pydantic_core import CoreSchema, core_schema
+    except ImportError:
+        return
+
+    def __get_pydantic_core_schema__(
+        source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
+        """Tell Pydantic to validate as str and coerce to this type."""
+        return core_schema.no_info_after_validator_function(source_type, handler(str))
+
+    FakerType.__get_pydantic_core_schema__ = __get_pydantic_core_schema__  # type: ignore[method-assign]
 
 
 class FakerType(str):
@@ -21,12 +36,8 @@ class FakerType(str):
         if provider:
             _register(cls, provider)
 
-    @classmethod
-    def __get_pydantic_core_schema__(
-        cls, source_type: Any, handler: GetCoreSchemaHandler
-    ) -> CoreSchema:
-        """Tell Pydantic to validate as str and coerce to this type."""
-        return core_schema.no_info_after_validator_function(cls, handler(str))
+
+_install_pydantic_schema()
 
 
 def _register(cls: type, provider_name: str) -> None:

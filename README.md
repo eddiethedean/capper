@@ -4,7 +4,7 @@ Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automat
 
 ## Goal
 
-Use **semantic types** (e.g. `Name`, `Email`) in your Pydantic models — Polyfactory picks the right Faker provider automatically. No manual registration.
+Use **semantic types** (e.g. `Name`, `Email`) in your models — Polyfactory picks the right Faker provider automatically. No manual registration. Works with **Pydantic**, **dataclasses**, **attrs**, and other Polyfactory-supported models.
 
 ## Install
 
@@ -12,9 +12,15 @@ Use **semantic types** (e.g. `Name`, `Email`) in your Pydantic models — Polyfa
 pip install capper
 ```
 
-Requires **Python 3.9+**, **Faker >= 20.0**, **Polyfactory >= 2.0**, and **Pydantic >= 2.0**.
+Requires **Python 3.9+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For **Pydantic** models, install the optional extra:
+
+```bash
+pip install capper[pydantic]
+```
 
 ## Usage
+
+**With Pydantic** (requires `capper[pydantic]`):
 
 ```python
 from pydantic import BaseModel
@@ -31,6 +37,24 @@ class UserFactory(ModelFactory[User]):
 user = UserFactory.build()
 print(user.name)   # e.g., "Ashley Johnson"
 print(user.email)  # e.g., "ashley.johnson@example.com"
+```
+
+**With dataclasses** (no Pydantic needed):
+
+```python
+from dataclasses import dataclass
+from capper import Name, Email
+from polyfactory.factories import DataclassFactory
+
+@dataclass
+class User:
+    name: Name
+    email: Email
+
+class UserFactory(DataclassFactory[User]):
+    pass
+
+user = UserFactory.build()
 ```
 
 Works automatically. No extra steps. IDE autocompletion.

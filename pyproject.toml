@@ -8,20 +8,26 @@ version = "0.1.0"
 description = "Semantic, typed wrappers for Faker with automatic Polyfactory integration"
 readme = "README.md"
 requires-python = ">=3.9"
+authors = [
+    { name = "Odos Matthews", email = "odosmatthews@gmail.com" },
+]
 dependencies = [
     "Faker>=20.0",
     "Polyfactory>=2.0",
-    "pydantic>=2.0",
 ]
 
 [project.optional-dependencies]
+pydantic = [
+    "pydantic>=2.0",
+]
 dev = [
     "pytest>=7.0",
+    "pydantic>=2.0",
 ]
 
 [project.urls]
-Documentation = "https://github.com/yourusername/capper#readme"
-Repository = "https://github.com/yourusername/capper"
+Documentation = "https://github.com/eddiethedean/capper#readme"
+Repository = "https://github.com/eddiethedean/capper"
 
 [tool.setuptools.packages.find]
 where = ["."]
