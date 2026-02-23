@@ -1,6 +1,6 @@
 """Capper: semantic Faker types with automatic Polyfactory integration."""
 
-from .base import FakerType
+from .base import FakerType, faker, seed
 from .commerce import Company, Currency, Price, Product
 from .date_time import Date, DateTime, Time
 from .finance import CreditCardExpiry, CreditCardNumber, CreditCardProvider
@@ -37,4 +37,6 @@ __all__ = [
     "Time",
     "URL",
     "UserName",
+    "faker",
+    "seed",
 ]

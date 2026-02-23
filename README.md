@@ -2,9 +2,14 @@
 
 Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automatic [Polyfactory](https://polyfactory.litestar.dev/) integration.
 
-## Goal
+**Source:** [github.com/eddiethedean/capper](https://github.com/eddiethedean/capper)
 
-Use **semantic types** (e.g. `Name`, `Email`) in your models — Polyfactory picks the right Faker provider automatically. No manual registration. Works with **Pydantic**, **dataclasses**, **attrs**, and other Polyfactory-supported models.
+## Why Capper?
+
+- **Zero config** — Import a type; Polyfactory uses the right Faker provider. No manual registration.
+- **Typed** — Use `Name`, `Email`, `PhoneNumber`, etc. in your models for clear intent and IDE support.
+- **Multi-backend** — Works with Pydantic, dataclasses, attrs, and other [Polyfactory-supported](https://polyfactory.litestar.dev/) model types.
+- **Optional Pydantic** — Install `capper` alone for dataclasses/attrs; add `capper[pydantic]` when you use Pydantic models.
 
 ## Install
 
@@ -35,8 +40,15 @@ class UserFactory(ModelFactory[User]):
     pass
 
 user = UserFactory.build()
-print(user.name)   # e.g., "Ashley Johnson"
-print(user.email)  # e.g., "ashley.johnson@example.com"
+print(user.name)
+print(user.email)
+```
+
+Example output (varies each run):
+
+```
+Paul Blair
+linda00@example.net
 ```
 
 **With dataclasses** (no Pydantic needed):
@@ -55,6 +67,15 @@ class UserFactory(DataclassFactory[User]):
     pass
 
 user = UserFactory.build()
+print(user.name)
+print(user.email)
+```
+
+Example output (varies each run):
+
+```
+Carly Jenkins
+oevans@example.com
 ```
 
 Works automatically. No extra steps. IDE autocompletion.
@@ -88,17 +109,40 @@ pip install -e ".[dev]"
 pytest capper/tests
 ```
 
+**Reproducibility:** Capper and Polyfactory share the same Faker instance, so one seed controls both capper types and built-in types (`str`, `int`, etc.):
+
+```python
+from capper import seed, Name
+from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
+
+class User(BaseModel):
+    name: Name
+
+class UserFactory(ModelFactory[User]):
+    pass
+
+# Either way seeds the shared Faker (same effect):
+seed(42)
+user1 = UserFactory.build()
+
+UserFactory.seed_random(42)
+user2 = UserFactory.build()  # same data as user1 if you seed the same before each
+```
+
+Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is created, or call `seed(42)` / `UserFactory.seed_random(42)` before each build for identical builds.
+
 ## Publishing
 
 Releases are built and published to PyPI via [GitHub Actions](.github/workflows/publish.yml). To publish:
 
 1. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
-2. Create a GitHub release (tag e.g. `v0.2.0`). The workflow runs tests, builds the package, and uploads to PyPI.
+2. Create a GitHub release (tag e.g. `v0.1.0`). The workflow runs tests, builds the package, and uploads to PyPI.
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 
 ## Links
 
-- [Package plan](capper_package_plan.md) — design and rationale
+- [Package plan](docs/capper_package_plan.md) — design and rationale
 - [Roadmap](docs/ROADMAP.md) — development phases and status
 - [Faker provider mapping](docs/FAKER_PROVIDERS.md) — type-to-provider reference

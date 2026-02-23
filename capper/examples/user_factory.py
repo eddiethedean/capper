@@ -1,4 +1,8 @@
-"""Example: Pydantic model with capper types and Polyfactory ModelFactory."""
+"""Example: Pydantic model with capper types and Polyfactory ModelFactory.
+
+Run with: python -m capper.examples.user_factory
+Output varies each run (Faker generates random data).
+"""
 
 from pydantic import BaseModel
 from polyfactory.factories.pydantic_factory import ModelFactory
@@ -17,5 +21,5 @@ class UserFactory(ModelFactory[User]):
 
 if __name__ == "__main__":
     user = UserFactory.build()
-    print(user.name)   # e.g., "Ashley Johnson"
-    print(user.email)  # e.g., "ashley.johnson@example.com"
+    print(user.name)
+    print(user.email)

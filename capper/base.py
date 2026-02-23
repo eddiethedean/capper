@@ -7,6 +7,14 @@ from polyfactory.factories.base import BaseFactory
 
 faker = Faker()
 
+# Share this Faker with Polyfactory so one seed controls both capper types and built-in types.
+BaseFactory.__faker__ = faker
+
+
+def seed(seed_value: int) -> None:
+    """Seed the shared Faker instance for reproducible data (e.g. in tests)."""
+    faker.seed_instance(seed_value)
+
 
 def _install_pydantic_schema() -> None:
     """If Pydantic is installed, add __get_pydantic_core_schema__ to FakerType."""

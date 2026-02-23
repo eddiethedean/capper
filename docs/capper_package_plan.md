@@ -95,9 +95,11 @@ class UserFactory(ModelFactory[User]):
     pass
 
 user = UserFactory.build()
-print(user.name)  # e.g., "Ashley Johnson"
-print(user.email) # e.g., "ashley.johnson@example.com"
+print(user.name)
+print(user.email)
 ```
+
+Example output (varies each run): `Ashley Martin` / `hughesricardo@example.com`
 
 ✅ Works automatically. ✅ No extra steps. ✅ IDE autocompletion.
 

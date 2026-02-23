@@ -98,3 +98,22 @@ def test_faker_kwargs_support() -> None:
 
     instance = ModelFactory.build()
     assert isinstance(instance.text, (str, ShortSentence)) and len(instance.text) > 0
+
+
+def test_seed_reproducibility() -> None:
+    """Seeding the shared Faker instance yields reproducible values."""
+    from capper import Name, seed
+    from polyfactory.factories.pydantic_factory import ModelFactory
+    from pydantic import BaseModel
+
+    class User(BaseModel):
+        name: Name
+
+    class UserFactory(ModelFactory[User]):
+        pass
+
+    seed(99)
+    user1 = UserFactory.build()
+    seed(99)
+    user2 = UserFactory.build()
+    assert user1.name == user2.name
