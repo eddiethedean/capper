@@ -1,4 +1,8 @@
-"""FakerType base class with automatic Polyfactory provider registration."""
+"""FakerType base class and shared Faker instance with automatic Polyfactory registration.
+
+The module-level ``faker`` is attached to Polyfactory's BaseFactory so that one seed
+controls both capper types and built-in types. Use ``seed(n)`` for reproducible data.
+"""
 
 from typing import Any
 
@@ -12,12 +16,16 @@ BaseFactory.__faker__ = faker
 
 
 def seed(seed_value: int) -> None:
-    """Seed the shared Faker instance for reproducible data (e.g. in tests)."""
+    """Seed the shared Faker instance for reproducible data.
+
+    Args:
+        seed_value: Integer seed; same value produces the same sequence of values.
+    """
     faker.seed_instance(seed_value)
 
 
 def _install_pydantic_schema() -> None:
-    """If Pydantic is installed, add __get_pydantic_core_schema__ to FakerType."""
+    """If Pydantic is available, attach __get_pydantic_core_schema__ to FakerType."""
     try:
         from pydantic import GetCoreSchemaHandler
         from pydantic_core import CoreSchema, core_schema
@@ -27,17 +35,18 @@ def _install_pydantic_schema() -> None:
     def __get_pydantic_core_schema__(
         source_type: Any, handler: GetCoreSchemaHandler
     ) -> CoreSchema:
-        """Tell Pydantic to validate as str and coerce to this type."""
+        """Validate as str then coerce to the FakerType subclass."""
         return core_schema.no_info_after_validator_function(source_type, handler(str))
 
-    FakerType.__get_pydantic_core_schema__ = __get_pydantic_core_schema__  # type: ignore[method-assign]
+    FakerType.__get_pydantic_core_schema__ = __get_pydantic_core_schema__  # type: ignore[attr-defined]
 
 
 class FakerType(str):
-    """Base for semantic Faker types. Subclasses are auto-registered with Polyfactory.
+    """Base class for semantic Faker types; subclasses are auto-registered with Polyfactory.
 
-    Subclasses may set ``faker_kwargs`` to a dict of keyword arguments passed to the
-    Faker provider (e.g. ``faker_kwargs = {"nb_words": 10}`` for ``sentence``).
+    Subclasses must set a non-empty ``faker_provider`` (the Faker method name).
+    Optional ``faker_kwargs`` is a dict of keyword arguments passed to that provider
+    (e.g. ``faker_kwargs = {"nb_words": 10}`` for ``sentence``).
     """
 
     faker_provider: str = ""
@@ -53,11 +62,10 @@ _install_pydantic_schema()
 
 
 def _register(cls: type, provider_name: str) -> None:
-    """Register a FakerType subclass with Polyfactory."""
+    """Register a FakerType subclass with Polyfactory so factories can generate values."""
     provider_kwargs = getattr(cls, "faker_kwargs", None) or {}
-    BaseFactory.add_provider(
-        cls,
-        lambda _cls=cls, _name=provider_name, _kwargs=provider_kwargs: getattr(
-            faker, _name
-        )(**_kwargs),
-    )
+
+    def _provide() -> str:
+        return getattr(faker, provider_name)(**provider_kwargs)
+
+    BaseFactory.add_provider(cls, _provide)

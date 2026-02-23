@@ -1,7 +1,7 @@
 """Example: Pydantic model with capper types and Polyfactory ModelFactory.
 
-Run with: python -m capper.examples.user_factory
-Output varies each run (Faker generates random data).
+Run: python -m capper.examples.user_factory
+Output varies each run; use capper.seed(n) for reproducible data.
 """
 
 from pydantic import BaseModel
@@ -11,11 +11,15 @@ from capper import Email, Name
 
 
 class User(BaseModel):
+    """Example Pydantic model with capper types."""
+
     name: Name
     email: Email
 
 
 class UserFactory(ModelFactory[User]):
+    """Polyfactory factory for User; uses capper's Faker for name and email."""
+
     pass
 
 

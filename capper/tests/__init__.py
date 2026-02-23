@@ -1,1 +1,1 @@
-"""Tests for capper."""
+"""Capper test suite."""

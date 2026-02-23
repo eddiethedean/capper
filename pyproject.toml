@@ -22,6 +22,7 @@ pydantic = [
 ]
 dev = [
     "pytest>=7.0",
+    "pytest-cov>=4.0",
     "pydantic>=2.0",
 ]
 
@@ -36,3 +37,4 @@ include = ["capper*"]
 [tool.pytest.ini_options]
 testpaths = ["capper/tests"]
 pythonpath = ["."]
+addopts = ["-v", "--tb=short"]

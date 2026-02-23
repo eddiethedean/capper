@@ -1,5 +1,9 @@
 # Capper
 
+[![PyPI version](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
+[![Python 3.9+](https://img.shields.io/pypi/pyversions/capper.svg)](https://pypi.org/project/capper/)
+[![CI](https://github.com/eddiethedean/capper/actions/workflows/publish.yml/badge.svg)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
+
 Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automatic [Polyfactory](https://polyfactory.litestar.dev/) integration.
 
 **Source:** [github.com/eddiethedean/capper](https://github.com/eddiethedean/capper)
@@ -109,6 +113,8 @@ pip install -e ".[dev]"
 pytest capper/tests
 ```
 
+Run tests with coverage: `pytest capper/tests --cov=capper --cov-report=term-missing`.
+
 **Reproducibility:** Capper and Polyfactory share the same Faker instance, so one seed controls both capper types and built-in types (`str`, `int`, etc.):
 
 ```python
@@ -143,6 +149,7 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
 
 ## Links
 
+- [Documentation index](docs/README.md) — overview of all docs
 - [Package plan](docs/capper_package_plan.md) — design and rationale
 - [Roadmap](docs/ROADMAP.md) — development phases and status
 - [Faker provider mapping](docs/FAKER_PROVIDERS.md) — type-to-provider reference

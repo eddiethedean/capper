@@ -1,4 +1,8 @@
-"""Capper: semantic Faker types with automatic Polyfactory integration."""
+"""Capper: semantic Faker types with automatic Polyfactory integration.
+
+Import types (e.g. ``Name``, ``Email``) and use them in Pydantic models, dataclasses,
+or attrs; Polyfactory will generate values via Faker. Use ``seed(n)`` for reproducibility.
+"""
 
 from .base import FakerType, faker, seed
 from .commerce import Company, Currency, Price, Product

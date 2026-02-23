@@ -1,6 +1,6 @@
 # Capper roadmap
 
-High-level development phases and current status. See [capper_package_plan.md](../capper_package_plan.md) for full design and [README.md](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
+High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
 **Quick reference:** Phase 1 and 2 done. Next: PyPI publish (0.2.0), then Phase 4 enhancements.
 
@@ -60,3 +60,7 @@ High-level development phases and current status. See [capper_package_plan.md](.
 ---
 
 *Last updated: 2025-02-23 (full roadmap: Phase 2–4, kwargs, compatibility, custom types).*
+
+---
+
+*See also: [Package plan](capper_package_plan.md) · [README](../README.md) · [Faker providers](FAKER_PROVIDERS.md)*

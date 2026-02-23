@@ -1,5 +1,7 @@
 # Capper: Polyfactory-First Semantic Faker Package
 
+Design and rationale for the **capper** package. For install and usage see the main [README](../README.md); for status and phases see the [Roadmap](ROADMAP.md).
+
 ## Package Name
 
 `capper`
@@ -165,4 +167,8 @@ Example output (varies each run): `Ashley Martin` / `hughesricardo@example.com`
 ---
 
 This approach makes Capper a **plug-and-play semantic Faker layer for Polyfactory** — simple, clean, and developer-friendly.
+
+---
+
+*See also: [README](../README.md) · [Roadmap](ROADMAP.md) · [Faker providers](FAKER_PROVIDERS.md)*
 
