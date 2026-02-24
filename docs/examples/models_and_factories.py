@@ -60,4 +60,6 @@ if __name__ == "__main__":
 
     print("\n--- Listing (Capper + int) ---")
     listing = ListingFactory.build()
-    print(f"{listing.company}: {listing.product} @ {listing.price} x {listing.quantity}")
+    print(
+        f"{listing.company}: {listing.product} @ {listing.price} x {listing.quantity}"
+    )

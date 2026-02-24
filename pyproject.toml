@@ -23,6 +23,7 @@ pydantic = [
 dev = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
     "pydantic>=2.0",
 ]
 

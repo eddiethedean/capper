@@ -78,12 +78,12 @@ def test_type_generates_non_empty_string(type_class: type) -> None:
 )
 def test_model_factory_builds_capper_type(type_class: type) -> None:
     """Builds a Pydantic model with a single capper type via ModelFactory; asserts non-empty and type."""
-    from typing import Any
+    from typing import Any, Type
 
     from polyfactory.factories.pydantic_factory import ModelFactory
     from pydantic import create_model
 
-    model_cls: type[Any] = create_model("Model", value=(type_class, ...))
+    model_cls: Type[Any] = create_model("Model", value=(type_class, ...))
 
     class ModelFactoryCls(ModelFactory[model_cls]):  # type: ignore[valid-type]
         pass
