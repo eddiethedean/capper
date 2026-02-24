@@ -1,8 +1,8 @@
 # Capper
 
 [![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
-[![Python](https://img.shields.io/pypi/pyversions/capper.svg)](https://pypi.org/project/capper/)
-[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/publish.yml?branch=main)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
+[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://pypi.org/project/capper/)
+[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/publish.yml?branch=main&label=CI)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
 [![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 
