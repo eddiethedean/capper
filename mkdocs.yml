@@ -20,6 +20,7 @@ nav:
   - Package plan: capper_package_plan.md
   - Roadmap: ROADMAP.md
   - Faker providers: FAKER_PROVIDERS.md
+  - Compatibility: compatibility.md
   - Extending Capper: extending.md
   - User guides:
       - Getting started: user_guides/getting_started.md

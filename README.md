@@ -1,7 +1,7 @@
 # Capper
 
 [![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
-[![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://pypi.org/project/capper/)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://pypi.org/project/capper/)
 [![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI)](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
 [![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
@@ -23,7 +23,7 @@ Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automat
 pip install capper
 ```
 
-Requires **Python 3.9+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. Optional extras:
+Requires **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. Optional extras:
 
 - **Pydantic** (for Pydantic models): `pip install capper[pydantic]`
 - **Hypothesis** (for property-based tests with `st.from_type(...)`): `pip install capper[hypothesis]`
@@ -122,7 +122,7 @@ Use `-n`/`--count` for the number of rows and `-s`/`--seed` for reproducible out
 
 ## Compatibility
 
-Capper targets **Faker >= 20.0** and **Polyfactory >= 2.0**. Major Faker upgrades may change or rename provider methods; if a type fails, check [Faker's changelog](https://faker.readthedocs.io/en/stable/changelog.html) and [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) and update the provider name if needed.
+Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For version ranges, upgrade guidance, and the deprecation policy, see [Compatibility](docs/compatibility.md).
 
 ## Development
 

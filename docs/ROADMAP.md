@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–7 done. Current: 0.4.0 (Phase 7 — documentation & API).
+**Quick reference:** Phases 1–8 done. Current: 0.5.0 (Phase 8 — compatibility & maintenance).
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–7 complete (Phase 7: API reference with MkDocs, CHANGELOG.md, notebooks in docs index).
+- **Progress:** Phases 1–8 complete (Phase 8: compatibility doc, deprecation policy, Python 3.10+ minimum).
 
-*Recent: Phase 7 — MkDocs + mkdocstrings API reference, CHANGELOG (Keep a Changelog), example notebooks surfaced in docs index.*
+*Recent: Phase 8 — docs/compatibility.md (version ranges, upgrade guidance, deprecation policy); dropped Python 3.9 (EOL), minimum 3.10.*
 
 ---
 
@@ -76,9 +76,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 8 — Compatibility & maintenance
 
-- [ ] Document supported Faker and Polyfactory version ranges and how to handle upgrades (e.g. in README or docs).
-- [ ] Define a simple deprecation policy (e.g. one minor version warning before removing or changing behavior).
-- [ ] Re-evaluate minimum Python version when 3.9 is EOL; update `requires-python` and CI if needed.
+- [x] Document supported Faker and Polyfactory version ranges and how to handle upgrades (e.g. in README or docs).
+- [x] Define a simple deprecation policy (e.g. one minor version warning before removing or changing behavior).
+- [x] Re-evaluate minimum Python version when 3.9 is EOL; update `requires-python` and CI if needed.
 
 ---
 
@@ -91,11 +91,11 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.3.0+ | Phase 4 enhancements as needed. |
 | 0.4.0  | Phase 6: 33 types (file, UUID, HexColor, EAN13/EAN8), use_faker(), locale docs, CONTRIBUTING.md, type-packs (extending.md). **Current.** |
 | 0.5.0  | Phase 7: API reference (MkDocs + mkdocstrings), CHANGELOG.md, notebook links in docs. |
-| 0.6.0+ | Phase 8: Compatibility docs, deprecation policy, Python/Faker maintenance. |
+| 0.6.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
 
 ---
 
-*Last updated: 2026-02-24 (Phase 7 complete).*
+*Last updated: 2026-02-24 (Phase 8 complete).*
 
 ---
 

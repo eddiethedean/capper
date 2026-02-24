@@ -38,7 +38,7 @@ Thanks for your interest in contributing. This guide covers development setup an
 
    Then open http://127.0.0.1:8000. Use `mkdocs build` to build static files to `site/`.
 
-(CI runs on Python 3.9–3.12; see [.github/workflows/ci.yml](.github/workflows/ci.yml).)
+(CI runs on Python 3.10–3.13; see [.github/workflows/ci.yml](.github/workflows/ci.yml).)
 
 ## Adding a new built-in type
 
@@ -66,6 +66,6 @@ New semantic types are subclasses of `FakerType` with a Faker provider. To add o
 
 ## Releases
 
-When cutting a release, update [CHANGELOG.md](../CHANGELOG.md): move items from **Unreleased** into a new version heading and add the release date. See [README Publishing](../README.md#publishing).
+When cutting a release, update [CHANGELOG.md](../CHANGELOG.md): move items from **Unreleased** into a new version heading and add the release date. See [README Publishing](../README.md#publishing). For the deprecation policy, see [Compatibility](docs/compatibility.md#deprecation-policy).
 
 For extending Capper with **third-party type packs** (your own package of `FakerType` subclasses), see [docs/extending.md](docs/extending.md).

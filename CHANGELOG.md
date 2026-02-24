@@ -9,9 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- API reference (MkDocs + mkdocstrings).
-- CHANGELOG.md (this file) in Keep a Changelog format.
-- Example notebooks surfaced in docs index for easier discovery.
+- Compatibility doc ([docs/compatibility.md](docs/compatibility.md)) with version ranges, upgrade guidance, and deprecation policy.
+- Phase 8: compatibility docs, deprecation policy, Python 3.10+ minimum.
+
+### Removed
+
+- Dropped support for Python 3.9 (EOL). Minimum is now 3.10.
 
 ## [0.4.0] - 2026-02-24
 
