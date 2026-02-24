@@ -74,9 +74,7 @@ def for_type(cls: Type[T]) -> st.SearchStrategy[T]:
             "Check faker_provider on the type."
         )
     if not callable(getattr(faker, provider)):
-        raise TypeError(
-            f"Faker.{provider} is not callable (used by {cls.__name__})."
-        )
+        raise TypeError(f"Faker.{provider} is not callable (used by {cls.__name__}).")
     kwargs = getattr(cls, "faker_kwargs", None) or {}
 
     @st.composite

@@ -90,9 +90,7 @@ def _register(cls: type, provider_name: str) -> None:
         )
     provider_fn = getattr(faker, provider_name)
     if not callable(provider_fn):
-        raise TypeError(
-            f"Faker.{provider_name} is not callable (used by {cls.__name__})."
-        )
+        raise TypeError(f"Faker.{provider_name} is not callable (used by {cls.__name__}).")
     provider_kwargs = dict(getattr(cls, "faker_kwargs", None) or {})
 
     def _provide() -> str:

@@ -8,6 +8,7 @@ and use st.from_type(Name) for property-based tests.
 
 try:
     from importlib.metadata import version as _version
+
     __version__ = _version("capper")
 except Exception:  # Package not installed (e.g. dev tree) or metadata missing
     __version__ = "0.3.0"

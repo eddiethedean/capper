@@ -184,7 +184,8 @@ def test_use_faker_switches_global_faker() -> None:
     from polyfactory.factories.pydantic_factory import ModelFactory
     from pydantic import BaseModel
 
-    from capper import Name, faker as default_faker, use_faker
+    from capper import Name, use_faker
+    from capper import faker as default_faker
 
     try:
         custom = Faker()
