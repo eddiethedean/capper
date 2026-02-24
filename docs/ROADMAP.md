@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–8 done. Current: 0.5.0 (Phase 8 — compatibility & maintenance).
+**Quick reference:** Phases 1–8 done. Current: 0.3.0 (Phase 8 — compatibility & maintenance).
 
 ---
 
@@ -88,10 +88,8 @@ High-level development phases and current status. See [capper_package_plan.md](c
 |--------|--------|
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
-| 0.3.0+ | Phase 4 enhancements as needed. |
-| 0.4.0  | Phase 6: 33 types (file, UUID, HexColor, EAN13/EAN8), use_faker(), locale docs, CONTRIBUTING.md, type-packs (extending.md). **Current.** |
-| 0.5.0  | Phase 7: API reference (MkDocs + mkdocstrings), CHANGELOG.md, notebook links in docs. |
-| 0.6.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
+| 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). **Current.** |
+| 0.4.0+ | Phase 6/7 content (33 types, use_faker(), CONTRIBUTING, API reference, CHANGELOG, etc.) — already in repo; future release. |
 
 ---
 

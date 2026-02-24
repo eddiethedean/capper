@@ -81,7 +81,8 @@ def test_type_generates_non_empty_string(type_class: type) -> None:
 
     faker = Faker()
     provider_name = getattr(type_class, "faker_provider")
-    value = getattr(faker, provider_name)()
+    kwargs = getattr(type_class, "faker_kwargs", None) or {}
+    value = getattr(faker, provider_name)(**kwargs)
     assert isinstance(value, (str, type_class))
     assert len(str(value)) > 0
 
@@ -174,3 +175,37 @@ def test_seed_reproducibility(seeded_faker: None) -> None:
     seed(42)
     user2 = UserFactory.build()
     assert user1.name == user2.name
+
+
+def test_use_faker_switches_global_faker() -> None:
+    """use_faker() switches the global Faker; next factory build uses that instance (e.g. seed)."""
+    from faker import Faker
+    from polyfactory.factories.base import BaseFactory
+    from polyfactory.factories.pydantic_factory import ModelFactory
+    from pydantic import BaseModel
+
+    from capper import Name, faker as default_faker, use_faker
+
+    try:
+        custom = Faker()
+        custom.seed_instance(123)
+        use_faker(custom)
+        from capper.base import faker as module_faker
+
+        assert module_faker is custom
+        assert BaseFactory.__faker__ is custom
+
+        class User(BaseModel):
+            name: Name
+
+        class UserFactory(ModelFactory[User]):
+            pass
+
+        seed_val = 999
+        custom.seed_instance(seed_val)
+        user1 = UserFactory.build()
+        custom.seed_instance(seed_val)
+        user2 = UserFactory.build()
+        assert user1.name == user2.name
+    finally:
+        use_faker(default_faker)

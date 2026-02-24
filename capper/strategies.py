@@ -68,6 +68,15 @@ def for_type(cls: Type[T]) -> st.SearchStrategy[T]:
     provider = getattr(cls, "faker_provider", None)
     if not provider:
         raise ValueError(f"{cls.__name__} has no faker_provider")
+    if not hasattr(faker, provider):
+        raise AttributeError(
+            f"Faker has no provider {provider!r} (used by {cls.__name__}). "
+            "Check faker_provider on the type."
+        )
+    if not callable(getattr(faker, provider)):
+        raise TypeError(
+            f"Faker.{provider} is not callable (used by {cls.__name__})."
+        )
     kwargs = getattr(cls, "faker_kwargs", None) or {}
 
     @st.composite

@@ -2,6 +2,10 @@
 
 Version support and upgrade guidance for Capper. For deprecations, see [Deprecation policy](#deprecation-policy) below.
 
+## Thread safety
+
+The module-level **faker** instance and **use_faker()** are process-wide. Do not call **use_faker()** from multiple threads while other threads are building models; the shared Faker is not thread-safe for switching and concurrent use. Use a single Faker (or call **use_faker()** only once at startup) when using Capper from multiple threads.
+
 ## Supported versions
 
 Capper is tested against:

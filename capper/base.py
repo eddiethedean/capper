@@ -2,6 +2,9 @@
 
 The module-level ``faker`` is attached to Polyfactory's BaseFactory so that one seed
 controls both capper types and built-in types. Use ``seed(n)`` for reproducible data.
+
+Note: The shared ``faker`` and ``use_faker()`` are not thread-safe; do not switch
+the global Faker from multiple threads while building models.
 """
 
 from typing import Any
@@ -30,6 +33,9 @@ def use_faker(instance: Faker) -> None:
     Replaces the module-level faker and Polyfactory's BaseFactory.__faker__
     so that one instance (e.g. a locale-specific Faker) is used everywhere.
     Call before building any models.
+
+    Note: The shared faker is not thread-safe. Do not call use_faker() from
+    multiple threads while other threads are building models.
 
     Args:
         instance: The Faker instance to use (e.g. Faker('de_DE')).
@@ -77,7 +83,17 @@ _install_pydantic_schema()
 
 def _register(cls: type, provider_name: str) -> None:
     """Register a FakerType subclass with Polyfactory so factories can generate values."""
-    provider_kwargs = getattr(cls, "faker_kwargs", None) or {}
+    if not hasattr(faker, provider_name):
+        raise AttributeError(
+            f"Faker has no provider {provider_name!r} (used by {cls.__name__}). "
+            "Check faker_provider on the type."
+        )
+    provider_fn = getattr(faker, provider_name)
+    if not callable(provider_fn):
+        raise TypeError(
+            f"Faker.{provider_name} is not callable (used by {cls.__name__})."
+        )
+    provider_kwargs = dict(getattr(cls, "faker_kwargs", None) or {})
 
     def _provide() -> str:
         value = getattr(faker, provider_name)(**provider_kwargs)
