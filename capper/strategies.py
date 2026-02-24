@@ -6,7 +6,7 @@ Use ``st.from_type(Name)`` after importing capper and capper.strategies, or call
 
 from __future__ import annotations
 
-from typing import Type, TypeVar
+from typing import Type, TypeVar, cast
 
 from hypothesis import strategies as st
 
@@ -66,7 +66,7 @@ def for_type(cls: Type[T]) -> st.SearchStrategy[T]:
         value = getattr(faker, provider)(**kwargs)
         return cls(str(value))
 
-    return _draw()
+    return cast(st.SearchStrategy[T], _draw())
 
 
 def _register_strategies() -> None:
