@@ -4,6 +4,8 @@ Use ``st.from_type(Name)`` after importing capper and capper.strategies, or call
 ``strategies.for_type(Name)`` to get a strategy that generates instances of that type.
 """
 
+from __future__ import annotations
+
 from typing import Type, TypeVar
 
 from hypothesis import strategies as st
