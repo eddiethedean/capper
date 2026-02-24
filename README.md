@@ -23,11 +23,10 @@ Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automat
 pip install capper
 ```
 
-Requires **Python 3.9+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For **Pydantic** models, install the optional extra:
+Requires **Python 3.9+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. Optional extras:
 
-```bash
-pip install capper[pydantic]
-```
+- **Pydantic** (for Pydantic models): `pip install capper[pydantic]`
+- **Hypothesis** (for property-based tests with `st.from_type(...)`): `pip install capper[hypothesis]`
 
 ## Usage
 
@@ -160,7 +159,7 @@ Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is cr
 Releases are built and published to PyPI via [GitHub Actions](https://github.com/eddiethedean/capper/blob/main/.github/workflows/publish.yml). To publish:
 
 1. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
-2. Create a GitHub release (tag e.g. `v0.1.0`). The workflow runs tests, builds the package, and uploads to PyPI.
+2. Create a GitHub release (tag e.g. `v0.2.0`). The workflow runs tests, builds the package, and uploads to PyPI.
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 
@@ -175,3 +174,4 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
 - [Package plan](docs/capper_package_plan.md) — design and rationale
 - [Roadmap](docs/ROADMAP.md) — development phases and status
 - [Faker provider mapping](docs/FAKER_PROVIDERS.md) — which Faker method each type uses
+- [Example notebooks](docs/notebooks/README.md) — Jupyter notebooks in `docs/notebooks/`

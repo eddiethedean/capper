@@ -45,7 +45,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - [x] Support Faker provider kwargs (e.g. min/max lengths, locales).
 - [x] Auto-sync or compatibility notes with new Faker releases.
-- [x] (Future) Hypothesis strategies, custom type registration, optional CLI — custom types documented in README; Hypothesis/CLI deferred.
+- [x] Hypothesis strategies (Phase 5), custom types documented in README; optional CLI in Phase 5.
 
 ---
 
@@ -70,15 +70,14 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 | Version | Focus |
 |--------|--------|
-| 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend (Pydantic, dataclasses, attrs), tests, examples. |
-| 0.2.0  | Phase 2 coverage (26 types: text, phone, finance), auto-registration, provider docs (current). |
+| 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
+| 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. **Current.** |
 | 0.3.0+ | Phase 4 enhancements as needed. |
-| 0.4.0  | Phase 5: Hypothesis strategies, optional CLI, Ruff/mypy in CI, API docs. |
-| 0.5.0+ | Phase 6: More types, custom Faker/locale support, contrib/plugin story. |
+| 0.4.0+ | Phase 6: More types, custom Faker/locale support, contrib/plugin story. |
 
 ---
 
-*Last updated: 2025-02-24 (Phase 5 implemented).*
+*Last updated: 2025-02-24 (0.2.0 release, docs aligned).*
 
 ---
 
