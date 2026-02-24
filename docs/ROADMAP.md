@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phase 1 and 2 done. Next: PyPI publish (0.2.0), then Phase 4 enhancements.
+**Quick reference:** Phases 1–4 done. Next: PyPI publish (0.2.0), then Phase 5 (DX/tooling) and Phase 6 (extensions).
 
 ---
 
@@ -49,6 +49,23 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
+## Phase 5 — Developer experience & tooling
+
+- [ ] Hypothesis strategies for capper types (e.g. `capper.strategies.name()`) for property-based tests.
+- [ ] Optional CLI (e.g. `capper generate Name Email --count 5`) for ad-hoc fake data from the shell.
+- [ ] Ruff and mypy in CI and in `pyproject.toml` (README already badges them).
+- [ ] API reference or improved docstrings for IDE/docs.
+
+---
+
+## Phase 6 — Extensions & ecosystem
+
+- [ ] Additional semantic types from Faker (e.g. file paths, UUID, hex color, barcode, or locale helpers).
+- [ ] Document or support using a custom Faker instance (e.g. locale-specific) with Polyfactory.
+- [ ] Contributing guide or pattern for third-party “capper type packs” (custom FakerType bundles).
+
+---
+
 ## Milestones / releases
 
 | Version | Focus |
@@ -56,10 +73,12 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend (Pydantic, dataclasses, attrs), tests, examples. |
 | 0.2.0  | Phase 2 coverage (26 types: text, phone, finance), auto-registration, provider docs (current). |
 | 0.3.0+ | Phase 4 enhancements as needed. |
+| 0.4.0  | Phase 5: Hypothesis strategies, optional CLI, Ruff/mypy in CI, API docs. |
+| 0.5.0+ | Phase 6: More types, custom Faker/locale support, contrib/plugin story. |
 
 ---
 
-*Last updated: 2025-02-23 (full roadmap: Phase 2–4, kwargs, compatibility, custom types).*
+*Last updated: 2025-02-24 (added Phase 5 and Phase 6).*
 
 ---
 

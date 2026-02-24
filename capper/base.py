@@ -66,6 +66,7 @@ def _register(cls: type, provider_name: str) -> None:
     provider_kwargs = getattr(cls, "faker_kwargs", None) or {}
 
     def _provide() -> str:
-        return getattr(faker, provider_name)(**provider_kwargs)
+        value = getattr(faker, provider_name)(**provider_kwargs)
+        return str(value)
 
     BaseFactory.add_provider(cls, _provide)
