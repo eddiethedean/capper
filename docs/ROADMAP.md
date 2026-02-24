@@ -66,6 +66,22 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
+## Phase 7 — Documentation & API
+
+- [ ] Add API reference (e.g. Sphinx or MkDocs) for public types and `FakerType` / `seed` / `use_faker`.
+- [ ] Add CHANGELOG (e.g. `CHANGELOG.md` or Keep a Changelog) and update it with each release.
+- [ ] Cross-link or surface example notebooks from the docs index so they are easy to discover.
+
+---
+
+## Phase 8 — Compatibility & maintenance
+
+- [ ] Document supported Faker and Polyfactory version ranges and how to handle upgrades (e.g. in README or docs).
+- [ ] Define a simple deprecation policy (e.g. one minor version warning before removing or changing behavior).
+- [ ] Re-evaluate minimum Python version when 3.9 is EOL; update `requires-python` and CI if needed.
+
+---
+
 ## Milestones / releases
 
 | Version | Focus |
@@ -74,10 +90,12 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0+ | Phase 4 enhancements as needed. |
 | 0.4.0  | Phase 6: 33 types (file, UUID, HexColor, EAN13/EAN8), use_faker(), locale docs, CONTRIBUTING.md, type-packs (extending.md). **Current.** |
+| 0.5.0+ | Phase 7: API reference, CHANGELOG, notebook links in docs. |
+| 0.6.0+ | Phase 8: Compatibility docs, deprecation policy, Python/Faker maintenance. |
 
 ---
 
-*Last updated: 2026-02-24 (Phase 6 complete).*
+*Last updated: 2026-02-24 (Phases 7–8 added).*
 
 ---
 
