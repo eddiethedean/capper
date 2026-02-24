@@ -97,6 +97,10 @@ Works automatically. No extra steps. IDE autocompletion.
 - **Text**: `Paragraph`, `Sentence`
 - **Phone**: `PhoneNumber`, `CountryCallingCode`
 - **Finance**: `CreditCardNumber`, `CreditCardExpiry`, `CreditCardProvider`
+- **File**: `FilePath`, `FileName`, `FileExtension`
+- **Misc**: `UUID`
+- **Color**: `HexColor`
+- **Barcode**: `EAN13`, `EAN8`
 
 Import from the top level: `from capper import Name, Email, Address, ...`  
 See [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) for the Faker provider used by each type.
@@ -152,7 +156,7 @@ UserFactory.seed_random(42)
 user2 = UserFactory.build()  # same data as user1 if you seed the same before each
 ```
 
-Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is created, or call `seed(42)` / `UserFactory.seed_random(42)` before each build for identical builds.
+Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is created, or call `seed(42)` / `UserFactory.seed_random(42)` before each build for identical builds. For a custom locale (e.g. German names), use **`use_faker(Faker('de_DE'))`** so both Capper and Polyfactory use the same Faker instance; see [Reproducible data](docs/user_guides/reproducible_data.md#locales-and-custom-faker).
 
 ## Publishing
 
@@ -166,6 +170,7 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
 ## Documentation
 
 - **[Docs index](docs/README.md)** — overview and links to all documentation
+- **[Contributing](CONTRIBUTING.md)** — dev setup and how to add new types
 - **User guides** (step-by-step, with runnable examples):
   - [Getting started](docs/user_guides/getting_started.md) — install, first model, first factory
   - [Models and factories](docs/user_guides/models_and_factories.md) — Pydantic, dataclasses, batches

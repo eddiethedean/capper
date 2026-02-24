@@ -13,7 +13,7 @@ def _type_registry() -> dict[str, Type[FakerType]]:
     """Map type name -> FakerType subclass (only types with faker_provider)."""
     registry: dict[str, Type[FakerType]] = {}
     for name in getattr(capper, "__all__", []):
-        if name in ("FakerType", "faker", "seed"):
+        if name in ("FakerType", "faker", "seed", "use_faker"):
             continue
         obj = getattr(capper, name, None)
         provider = getattr(obj, "faker_provider", None)

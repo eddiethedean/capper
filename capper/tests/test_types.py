@@ -3,8 +3,11 @@
 import pytest
 
 from capper import (
+    EAN8,
+    EAN13,
     IP,
     URL,
+    UUID,
     Address,
     City,
     Company,
@@ -17,7 +20,11 @@ from capper import (
     Date,
     DateTime,
     Email,
+    FileExtension,
+    FileName,
+    FilePath,
     FirstName,
+    HexColor,
     Job,
     LastName,
     Name,
@@ -59,6 +66,13 @@ from capper import (
         CreditCardNumber,
         CreditCardExpiry,
         CreditCardProvider,
+        FilePath,
+        FileName,
+        FileExtension,
+        UUID,
+        HexColor,
+        EAN13,
+        EAN8,
     ],
 )
 def test_type_generates_non_empty_string(type_class: type) -> None:
@@ -74,7 +88,19 @@ def test_type_generates_non_empty_string(type_class: type) -> None:
 
 @pytest.mark.parametrize(
     "type_class",
-    [Name, Email, PhoneNumber, FirstName, Address, Sentence, CreditCardNumber],
+    [
+        Name,
+        Email,
+        PhoneNumber,
+        FirstName,
+        Address,
+        Sentence,
+        CreditCardNumber,
+        FilePath,
+        UUID,
+        HexColor,
+        EAN13,
+    ],
 )
 def test_model_factory_builds_capper_type(type_class: type) -> None:
     """Pydantic model with one capper type via ModelFactory; asserts non-empty and type."""
@@ -119,6 +145,15 @@ def test_faker_kwargs_support() -> None:
 
     instance = FakerKwargsModelFactory.build()
     assert isinstance(instance.text, (str, ShortSentence)) and len(instance.text) > 0
+
+
+def test_hex_color_format() -> None:
+    """HexColor yields a string starting with #."""
+    from faker import Faker
+
+    faker = Faker()
+    value = faker.color(color_format="hex")
+    assert isinstance(value, str) and value.startswith("#") and len(value) == 7
 
 
 def test_seed_reproducibility(seeded_faker: None) -> None:

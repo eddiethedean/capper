@@ -87,6 +87,45 @@ if __name__ == "__main__":
     print(u1.name, u2.name)
 ```
 
+## Locales and custom Faker
+
+Capper and Polyfactory both use a single shared Faker instance. To use a **custom locale** (e.g. German names and addresses) everywhere, replace that instance so both Capper types and Polyfactory’s built-in types use it.
+
+**Option 1: `use_faker()`** — one call updates both Capper and Polyfactory:
+
+```python
+from faker import Faker
+from capper import use_faker, Name, Address
+from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
+
+use_faker(Faker("de_DE"))
+
+class Person(BaseModel):
+    name: Name
+    address: Address
+
+class PersonFactory(ModelFactory[Person]):
+    pass
+
+p = PersonFactory.build()  # German-style name and address
+```
+
+**Option 2: Set both manually** — set the global Capper faker and Polyfactory’s default so seeds and locale stay in sync:
+
+```python
+from faker import Faker
+import capper
+from polyfactory.factories.base import BaseFactory
+
+my_faker = Faker("de_DE")
+capper.faker = my_faker
+BaseFactory.__faker__ = my_faker
+# then use capper types and factories as usual
+```
+
+If you only set **`YourFactory.__faker__ = Faker('de_DE')`** on a specific factory, Polyfactory’s built-in types will use that locale, but Capper-generated fields still use the global `capper.faker`. For full locale control, use `use_faker(my_faker)` or set both as above.
+
 ## Run the examples
 
 From the repo root (with Capper installed):

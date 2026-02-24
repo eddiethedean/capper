@@ -6,12 +6,16 @@ With Hypothesis installed (pip install capper[hypothesis]), import capper.strate
 and use st.from_type(Name) for property-based tests.
 """
 
-from .base import FakerType, faker, seed
+from .barcode import EAN8, EAN13
+from .base import FakerType, faker, seed, use_faker
+from .color import HexColor
 from .commerce import Company, Currency, Price, Product
 from .date_time import Date, DateTime, Time
+from .file import FileExtension, FileName, FilePath
 from .finance import CreditCardExpiry, CreditCardNumber, CreditCardProvider
 from .geo import Address, City, Country
 from .internet import IP, URL, Email, UserName
+from .misc import UUID
 from .person import FirstName, Job, LastName, Name
 from .phone import CountryCallingCode, PhoneNumber
 from .text import Paragraph, Sentence
@@ -28,9 +32,15 @@ __all__ = [
     "Currency",
     "Date",
     "DateTime",
+    "EAN13",
+    "EAN8",
     "Email",
     "FakerType",
+    "FileExtension",
+    "FileName",
+    "FilePath",
     "FirstName",
+    "HexColor",
     "IP",
     "Job",
     "LastName",
@@ -42,7 +52,9 @@ __all__ = [
     "Sentence",
     "Time",
     "URL",
+    "UUID",
     "UserName",
     "faker",
     "seed",
+    "use_faker",
 ]

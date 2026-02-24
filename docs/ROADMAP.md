@@ -2,17 +2,17 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–5 done. Next: Phase 6 (extensions) or 0.4.0 release.
+**Quick reference:** Phases 1–6 done. Current: 0.4.0 (Phase 6 — extensions & ecosystem).
 
 ---
 
 ## Current status
 
-- **Core:** Package layout, `FakerType` base, 26 semantic types (person, geo, internet, commerce, date/time, text, phone, finance), tests, and examples.
+- **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–5 complete (Phase 5: Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings).
+- **Progress:** Phases 1–6 complete (Phase 6: new types, `use_faker()` and locale docs, CONTRIBUTING.md, type-packs pattern).
 
-*Recent: Phase 5 — Hypothesis strategies, CLI, Ruff/mypy, docstrings.*
+*Recent: Phase 6 — File/FilePath/FileName/FileExtension, UUID, HexColor, EAN13/EAN8; use_faker(); CONTRIBUTING + extending docs.*
 
 ---
 
@@ -60,9 +60,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 6 — Extensions & ecosystem
 
-- [ ] Additional semantic types from Faker (e.g. file paths, UUID, hex color, barcode, or locale helpers).
-- [ ] Document or support using a custom Faker instance (e.g. locale-specific) with Polyfactory.
-- [ ] Contributing guide or pattern for third-party “capper type packs” (custom FakerType bundles).
+- [x] Additional semantic types from Faker (e.g. file paths, UUID, hex color, barcode, or locale helpers).
+- [x] Document or support using a custom Faker instance (e.g. locale-specific) with Polyfactory.
+- [x] Contributing guide or pattern for third-party “capper type packs” (custom FakerType bundles).
 
 ---
 
@@ -71,13 +71,13 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | Version | Focus |
 |--------|--------|
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
-| 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. **Current.** |
+| 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0+ | Phase 4 enhancements as needed. |
-| 0.4.0+ | Phase 6: More types, custom Faker/locale support, contrib/plugin story. |
+| 0.4.0  | Phase 6: 33 types (file, UUID, HexColor, EAN13/EAN8), use_faker(), locale docs, CONTRIBUTING.md, type-packs (extending.md). **Current.** |
 
 ---
 
-*Last updated: 2025-02-24 (0.2.0 release, docs aligned).*
+*Last updated: 2026-02-24 (Phase 6 complete).*
 
 ---
 

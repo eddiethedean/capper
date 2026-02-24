@@ -10,12 +10,16 @@ from typing import Type, TypeVar, cast
 
 from hypothesis import strategies as st
 
+from .barcode import EAN8, EAN13
 from .base import FakerType, faker
+from .color import HexColor
 from .commerce import Company, Currency, Price, Product
 from .date_time import Date, DateTime, Time
+from .file import FileExtension, FileName, FilePath
 from .finance import CreditCardExpiry, CreditCardNumber, CreditCardProvider
 from .geo import Address, City, Country
 from .internet import IP, URL, Email, UserName
+from .misc import UUID
 from .person import FirstName, Job, LastName, Name
 from .phone import CountryCallingCode, PhoneNumber
 from .text import Paragraph, Sentence
@@ -35,8 +39,14 @@ _BUILTIN_TYPES: tuple[type[FakerType], ...] = (
     Currency,
     Date,
     DateTime,
+    EAN13,
+    EAN8,
     Email,
+    FileExtension,
+    FileName,
+    FilePath,
     FirstName,
+    HexColor,
     IP,
     Job,
     LastName,
@@ -48,6 +58,7 @@ _BUILTIN_TYPES: tuple[type[FakerType], ...] = (
     Sentence,
     Time,
     URL,
+    UUID,
     UserName,
 )
 

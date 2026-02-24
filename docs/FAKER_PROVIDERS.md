@@ -37,6 +37,17 @@ Each capper type uses a single [Faker](https://faker.readthedocs.io/) provider m
 | CreditCardNumber | `credit_card_number` |
 | CreditCardExpiry | `credit_card_expire` |
 | CreditCardProvider | `credit_card_provider` |
+| **File** | |
+| FilePath | `file_path` |
+| FileName | `file_name` |
+| FileExtension | `file_extension` |
+| **Misc** | |
+| UUID | `uuid4` |
+| **Color** | |
+| HexColor | `color` (with `color_format='hex'`) |
+| **Barcode** | |
+| EAN13 | `ean13` |
+| EAN8 | `ean8` |
 
 ---
 

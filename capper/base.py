@@ -24,6 +24,21 @@ def seed(seed_value: int) -> None:
     faker.seed_instance(seed_value)
 
 
+def use_faker(instance: Faker) -> None:
+    """Use a custom Faker instance for both Capper and Polyfactory.
+
+    Replaces the module-level faker and Polyfactory's BaseFactory.__faker__
+    so that one instance (e.g. a locale-specific Faker) is used everywhere.
+    Call before building any models.
+
+    Args:
+        instance: The Faker instance to use (e.g. Faker('de_DE')).
+    """
+    global faker
+    faker = instance
+    BaseFactory.__faker__ = instance
+
+
 def _install_pydantic_schema() -> None:
     """If Pydantic is available, attach __get_pydantic_core_schema__ to FakerType."""
     try:
