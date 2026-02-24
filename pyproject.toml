@@ -32,6 +32,10 @@ dev = [
     "mypy>=1.0",
     "hypothesis>=6.0",
 ]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocstrings[python]>=0.24",
+]
 
 [project.urls]
 Documentation = "https://github.com/eddiethedean/capper#readme"

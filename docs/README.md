@@ -24,6 +24,19 @@ Step-by-step guides with runnable examples (run from repo root with Capper insta
 
 Runnable scripts for each guide live in [docs/examples/](examples/).
 
+## Example notebooks
+
+Jupyter notebooks demonstrate Capper usage with runnable examples.
+
+| Notebook | Description |
+|----------|-------------|
+| [01_getting_started.ipynb](notebooks/01_getting_started.ipynb) | First Pydantic model with Name and Email. |
+| [02_models_and_batch.ipynb](notebooks/02_models_and_batch.ipynb) | Pydantic, dataclass, `batch()`, mixing Capper and built-in types. |
+| [03_reproducible_data.ipynb](notebooks/03_reproducible_data.ipynb) | Seeding with `seed()` and `seed_random()`. |
+| [04_custom_types.ipynb](notebooks/04_custom_types.ipynb) | Custom `FakerType` subclasses and `faker_kwargs`. |
+
+Full list and run instructions: [notebooks/README.md](notebooks/README.md).
+
 ## Types and API
 
 For the full list of Capper types and the Faker provider used by each, see

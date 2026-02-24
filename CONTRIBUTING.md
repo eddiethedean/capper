@@ -29,6 +29,15 @@ Thanks for your interest in contributing. This guide covers development setup an
    mypy capper
    ```
 
+5. Build the docs (optional; requires `.[docs]`):
+
+   ```bash
+   pip install -e ".[dev,docs]"
+   mkdocs serve
+   ```
+
+   Then open http://127.0.0.1:8000. Use `mkdocs build` to build static files to `site/`.
+
 (CI runs on Python 3.9–3.12; see [.github/workflows/ci.yml](.github/workflows/ci.yml).)
 
 ## Adding a new built-in type
@@ -54,5 +63,9 @@ New semantic types are subclasses of `FakerType` with a Faker provider. To add o
 - Branch from `main`.
 - Ensure all tests pass and lint/type-check are clean.
 - Keep changes focused; reference any related issues.
+
+## Releases
+
+When cutting a release, update [CHANGELOG.md](../CHANGELOG.md): move items from **Unreleased** into a new version heading and add the release date. See [README Publishing](../README.md#publishing).
 
 For extending Capper with **third-party type packs** (your own package of `FakerType` subclasses), see [docs/extending.md](docs/extending.md).

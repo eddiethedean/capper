@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–6 done. Current: 0.4.0 (Phase 6 — extensions & ecosystem).
+**Quick reference:** Phases 1–7 done. Current: 0.4.0 (Phase 7 — documentation & API).
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–6 complete (Phase 6: new types, `use_faker()` and locale docs, CONTRIBUTING.md, type-packs pattern).
+- **Progress:** Phases 1–7 complete (Phase 7: API reference with MkDocs, CHANGELOG.md, notebooks in docs index).
 
-*Recent: Phase 6 — File/FilePath/FileName/FileExtension, UUID, HexColor, EAN13/EAN8; use_faker(); CONTRIBUTING + extending docs.*
+*Recent: Phase 7 — MkDocs + mkdocstrings API reference, CHANGELOG (Keep a Changelog), example notebooks surfaced in docs index.*
 
 ---
 
@@ -68,9 +68,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 7 — Documentation & API
 
-- [ ] Add API reference (e.g. Sphinx or MkDocs) for public types and `FakerType` / `seed` / `use_faker`.
-- [ ] Add CHANGELOG (e.g. `CHANGELOG.md` or Keep a Changelog) and update it with each release.
-- [ ] Cross-link or surface example notebooks from the docs index so they are easy to discover.
+- [x] Add API reference (e.g. Sphinx or MkDocs) for public types and `FakerType` / `seed` / `use_faker`.
+- [x] Add CHANGELOG (e.g. `CHANGELOG.md` or Keep a Changelog) and update it with each release.
+- [x] Cross-link or surface example notebooks from the docs index so they are easy to discover.
 
 ---
 
@@ -90,12 +90,12 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0+ | Phase 4 enhancements as needed. |
 | 0.4.0  | Phase 6: 33 types (file, UUID, HexColor, EAN13/EAN8), use_faker(), locale docs, CONTRIBUTING.md, type-packs (extending.md). **Current.** |
-| 0.5.0+ | Phase 7: API reference, CHANGELOG, notebook links in docs. |
+| 0.5.0  | Phase 7: API reference (MkDocs + mkdocstrings), CHANGELOG.md, notebook links in docs. |
 | 0.6.0+ | Phase 8: Compatibility docs, deprecation policy, Python/Faker maintenance. |
 
 ---
 
-*Last updated: 2026-02-24 (Phases 7–8 added).*
+*Last updated: 2026-02-24 (Phase 7 complete).*
 
 ---
 

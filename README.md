@@ -162,14 +162,16 @@ Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is cr
 
 Releases are built and published to PyPI via [GitHub Actions](https://github.com/eddiethedean/capper/blob/main/.github/workflows/publish.yml). To publish:
 
-1. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
-2. Create a GitHub release (tag e.g. `v0.2.0`). The workflow runs tests, builds the package, and uploads to PyPI.
+1. Update [CHANGELOG.md](CHANGELOG.md): move Unreleased entries into a new version section and date it.
+2. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
+3. Create a GitHub release (tag e.g. `v0.2.0`). The workflow runs tests, builds the package, and uploads to PyPI.
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 
 ## Documentation
 
 - **[Docs index](docs/README.md)** — overview and links to all documentation
+- **[API reference](docs/api.md)** — generated API docs (build with `mkdocs serve`; see [Contributing](CONTRIBUTING.md))
 - **[Contributing](CONTRIBUTING.md)** — dev setup and how to add new types
 - **User guides** (step-by-step, with runnable examples):
   - [Getting started](docs/user_guides/getting_started.md) — install, first model, first factory

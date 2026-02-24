@@ -1,0 +1,33 @@
+site_name: Capper
+site_description: Semantic, typed wrappers for Faker with automatic Polyfactory integration.
+site_url: https://github.com/eddiethedean/capper
+
+theme:
+  name: readthedocs
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          options:
+            show_source: false
+            docstring_style: google
+
+nav:
+  - Home: README.md
+  - Package plan: capper_package_plan.md
+  - Roadmap: ROADMAP.md
+  - Faker providers: FAKER_PROVIDERS.md
+  - Extending Capper: extending.md
+  - User guides:
+      - Getting started: user_guides/getting_started.md
+      - Models and factories: user_guides/models_and_factories.md
+      - Reproducible data: user_guides/reproducible_data.md
+      - Custom types: user_guides/custom_types.md
+  - Example notebooks: notebooks/README.md
+  - API Reference: api.md
+
+markdown_extensions:
+  - pymdownx.superfences

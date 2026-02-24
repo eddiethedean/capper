@@ -64,6 +64,9 @@ htmlcov/
 .ipynb_checkpoints/
 *.ipynb_checkpoints
 
+# MkDocs build output
+site/
+
 # Local / misc
 *.log
 *.tmp
