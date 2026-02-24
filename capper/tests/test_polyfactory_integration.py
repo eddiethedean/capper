@@ -1,10 +1,10 @@
-"""Tests for Polyfactory integration: ModelFactory, DataclassFactory, shared Faker, auto-registration."""
+"""Tests for Polyfactory: ModelFactory, DataclassFactory, shared Faker, auto-registration."""
 
 from dataclasses import dataclass
 
-from pydantic import BaseModel
 from polyfactory.factories import DataclassFactory
 from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
 
 from capper import Email, Name
 
@@ -50,14 +50,15 @@ def test_seed_random_and_capper_seed_produce_same_value() -> None:
 
 def test_model_factory_uses_capper_faker() -> None:
     """Asserts ModelFactory.__faker__ is capper's faker to document the shared instance."""
-    import capper
     from polyfactory.factories.pydantic_factory import ModelFactory
+
+    import capper
 
     assert ModelFactory.__faker__ is capper.faker
 
 
 def test_dataclass_factory_builds_with_capper_types() -> None:
-    """Builds a dataclass with Name and Email via DataclassFactory; asserts non-empty and valid email."""
+    """Dataclass with Name/Email via DataclassFactory; asserts non-empty and valid email."""
 
     @dataclass
     class Person:
@@ -94,10 +95,11 @@ def test_dataclass_factory_batch() -> None:
 
 
 def test_capper_types_auto_registered_with_polyfactory() -> None:
-    """Asserts that importing capper registers types so Polyfactory can build a model with PhoneNumber."""
-    from capper import PhoneNumber
+    """Importing capper registers types so Polyfactory can build a model with PhoneNumber."""
     from polyfactory.factories.pydantic_factory import ModelFactory
     from pydantic import BaseModel
+
+    from capper import PhoneNumber
 
     class Contact(BaseModel):
         phone: PhoneNumber

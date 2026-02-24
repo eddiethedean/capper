@@ -3,6 +3,8 @@
 import pytest
 
 from capper import (
+    IP,
+    URL,
     Address,
     City,
     Company,
@@ -16,7 +18,6 @@ from capper import (
     DateTime,
     Email,
     FirstName,
-    IP,
     Job,
     LastName,
     Name,
@@ -26,7 +27,6 @@ from capper import (
     Product,
     Sentence,
     Time,
-    URL,
     UserName,
 )
 
@@ -62,7 +62,7 @@ from capper import (
     ],
 )
 def test_type_generates_non_empty_string(type_class: type) -> None:
-    """Asserts each type's Faker provider exists and returns a non-empty value (provider availability)."""
+    """Each type's Faker provider exists and returns a non-empty value."""
     from faker import Faker
 
     faker = Faker()
@@ -77,7 +77,7 @@ def test_type_generates_non_empty_string(type_class: type) -> None:
     [Name, Email, PhoneNumber, FirstName, Address, Sentence, CreditCardNumber],
 )
 def test_model_factory_builds_capper_type(type_class: type) -> None:
-    """Builds a Pydantic model with a single capper type via ModelFactory; asserts non-empty and type."""
+    """Pydantic model with one capper type via ModelFactory; asserts non-empty and type."""
     from typing import Any, Type
 
     from polyfactory.factories.pydantic_factory import ModelFactory
@@ -94,7 +94,7 @@ def test_model_factory_builds_capper_type(type_class: type) -> None:
 
 
 def test_faker_kwargs_support() -> None:
-    """Asserts types can set faker_kwargs and provider is called with them; builds via ModelFactory and checks value."""
+    """faker_kwargs passed to provider; ModelFactory builds and checks value."""
     from capper.base import FakerType
 
     class ShortSentence(FakerType):
@@ -123,9 +123,10 @@ def test_faker_kwargs_support() -> None:
 
 def test_seed_reproducibility(seeded_faker: None) -> None:
     """Builds twice after seeding with same value; asserts identical generated name."""
-    from capper import Name, seed
     from polyfactory.factories.pydantic_factory import ModelFactory
     from pydantic import BaseModel
+
+    from capper import Name, seed
 
     class User(BaseModel):
         name: Name

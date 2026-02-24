@@ -106,6 +106,17 @@ See [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/d
 
 **Custom types:** Subclass `FakerType`, set `faker_provider` to the Faker method name (e.g. `"company"`), and optionally `faker_kwargs`. The type auto-registers with Polyfactory when the class is defined.
 
+## CLI
+
+Generate fake values from the command line:
+
+```bash
+capper generate Name Email --count 5
+capper generate Name Email --count 3 --seed 42
+```
+
+Use `-n`/`--count` for the number of rows and `-s`/`--seed` for reproducible output. Type names are the same as the Python types (e.g. `Name`, `Email`, `Address`).
+
 ## Compatibility
 
 Capper targets **Faker >= 20.0** and **Polyfactory >= 2.0**. Major Faker upgrades may change or rename provider methods; if a type fails, check [Faker's changelog](https://faker.readthedocs.io/en/stable/changelog.html) and [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) and update the provider name if needed.
@@ -116,6 +127,8 @@ Capper targets **Faker >= 20.0** and **Polyfactory >= 2.0**. Major Faker upgrade
 pip install -e ".[dev]"
 pytest capper/tests
 ```
+
+Lint and type-check: `ruff check .`, `ruff format .`, `mypy capper`.
 
 Run tests with coverage: `pytest capper/tests --cov=capper --cov-report=term-missing`.
 

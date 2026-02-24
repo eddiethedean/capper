@@ -4,8 +4,8 @@ Run: python -m capper.examples.user_factory
 Output varies each run; use capper.seed(n) for reproducible data.
 """
 
-from pydantic import BaseModel
 from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
 
 from capper import Email, Name
 

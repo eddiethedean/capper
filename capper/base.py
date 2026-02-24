@@ -32,9 +32,7 @@ def _install_pydantic_schema() -> None:
     except ImportError:
         return
 
-    def __get_pydantic_core_schema__(
-        source_type: Any, handler: GetCoreSchemaHandler
-    ) -> CoreSchema:
+    def __get_pydantic_core_schema__(source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
         """Validate as str then coerce to the FakerType subclass."""
         return core_schema.no_info_after_validator_function(source_type, handler(str))
 
@@ -42,11 +40,12 @@ def _install_pydantic_schema() -> None:
 
 
 class FakerType(str):
-    """Base class for semantic Faker types; subclasses are auto-registered with Polyfactory.
+    """Base class for semantic Faker types; subclasses auto-register with Polyfactory.
 
     Subclasses must set a non-empty ``faker_provider`` (the Faker method name).
     Optional ``faker_kwargs`` is a dict of keyword arguments passed to that provider
     (e.g. ``faker_kwargs = {"nb_words": 10}`` for ``sentence``).
+    When Hypothesis is installed, use ``st.from_type(YourFakerType)`` for property-based tests.
     """
 
     faker_provider: str = ""

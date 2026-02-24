@@ -22,6 +22,11 @@ Step-by-step guides with runnable examples (run from repo root with Capper insta
 
 Runnable scripts for each guide live in [docs/examples/](examples/).
 
+## Types and API
+
+For the full list of Capper types and the Faker provider used by each, see
+[FAKER_PROVIDERS.md](FAKER_PROVIDERS.md). Import types from the top level: ``from capper import Name, Email, ...``.
+
 ---
 
 **Quick links**

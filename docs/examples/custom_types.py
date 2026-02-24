@@ -3,9 +3,10 @@
 Run from repo root (with capper installed): python docs/examples/custom_types.py
 """
 
-from capper.base import FakerType
-from pydantic import BaseModel
 from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
+
+from capper.base import FakerType
 
 
 # faker_kwargs: constrain existing provider

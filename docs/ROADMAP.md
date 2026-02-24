@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–4 done. Next: PyPI publish (0.2.0), then Phase 5 (DX/tooling) and Phase 6 (extensions).
+**Quick reference:** Phases 1–5 done. Next: Phase 6 (extensions) or 0.4.0 release.
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 26 semantic types (person, geo, internet, commerce, date/time, text, phone, finance), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phase 1 and 2 complete. Phase 3 packaging done except PyPI publish.
+- **Progress:** Phases 1–5 complete (Phase 5: Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings).
 
-*Recent: Pydantic made optional; README dataclass example.*
+*Recent: Phase 5 — Hypothesis strategies, CLI, Ruff/mypy, docstrings.*
 
 ---
 
@@ -51,10 +51,10 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 5 — Developer experience & tooling
 
-- [ ] Hypothesis strategies for capper types (e.g. `capper.strategies.name()`) for property-based tests.
-- [ ] Optional CLI (e.g. `capper generate Name Email --count 5`) for ad-hoc fake data from the shell.
-- [ ] Ruff and mypy in CI and in `pyproject.toml` (README already badges them).
-- [ ] API reference or improved docstrings for IDE/docs.
+- [x] Hypothesis strategies for capper types (e.g. `st.from_type(Name)`, `capper.strategies.for_type()`) for property-based tests.
+- [x] Optional CLI (e.g. `capper generate Name Email --count 5`) for ad-hoc fake data from the shell.
+- [x] Ruff and mypy in CI and in `pyproject.toml` (README already badges them).
+- [x] API reference or improved docstrings for IDE/docs.
 
 ---
 
@@ -78,7 +78,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
-*Last updated: 2025-02-24 (added Phase 5 and Phase 6).*
+*Last updated: 2025-02-24 (Phase 5 implemented).*
 
 ---
 

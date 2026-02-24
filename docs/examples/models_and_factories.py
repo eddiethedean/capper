@@ -4,10 +4,12 @@ Run from repo root (with capper installed): python docs/examples/models_and_fact
 """
 
 from dataclasses import dataclass
-from pydantic import BaseModel
-from capper import Name, Email, Address, PhoneNumber, Company, Product, Price
+
 from polyfactory.factories import DataclassFactory
 from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
+
+from capper import Address, Company, Email, Name, PhoneNumber, Price, Product
 
 
 # --- Pydantic ---
@@ -60,6 +62,4 @@ if __name__ == "__main__":
 
     print("\n--- Listing (Capper + int) ---")
     listing = ListingFactory.build()
-    print(
-        f"{listing.company}: {listing.product} @ {listing.price} x {listing.quantity}"
-    )
+    print(f"{listing.company}: {listing.product} @ {listing.price} x {listing.quantity}")

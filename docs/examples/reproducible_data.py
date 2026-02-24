@@ -3,9 +3,10 @@
 Run from repo root (with capper installed): python docs/examples/reproducible_data.py
 """
 
-from capper import seed, Name, Email
 from polyfactory.factories.pydantic_factory import ModelFactory
 from pydantic import BaseModel
+
+from capper import Email, Name, seed
 
 
 class User(BaseModel):

@@ -3,9 +3,10 @@
 Run from repo root (with capper installed): python docs/examples/getting_started.py
 """
 
-from pydantic import BaseModel
-from capper import Name, Email
 from polyfactory.factories.pydantic_factory import ModelFactory
+from pydantic import BaseModel
+
+from capper import Email, Name
 
 
 class User(BaseModel):
