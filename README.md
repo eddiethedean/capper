@@ -2,7 +2,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://pypi.org/project/capper/)
-[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/publish.yml?branch=main&label=CI)](https://github.com/eddiethedean/capper/actions/workflows/publish.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI)](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
 [![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 
@@ -86,6 +86,8 @@ oevans@example.com
 
 Works automatically. No extra steps. IDE autocompletion.
 
+**New to Capper?** See the [Getting started](docs/user_guides/getting_started.md) guide and run the examples in `docs/examples/`.
+
 ## Available types
 
 - **Person**: `Name`, `FirstName`, `LastName`, `Job`
@@ -149,9 +151,14 @@ Releases are built and published to PyPI via [GitHub Actions](https://github.com
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 
-## Links
+## Documentation
 
-- [Documentation index](https://github.com/eddiethedean/capper/blob/main/docs/README.md) — overview of all docs
-- [Package plan](https://github.com/eddiethedean/capper/blob/main/docs/capper_package_plan.md) — design and rationale
-- [Roadmap](https://github.com/eddiethedean/capper/blob/main/docs/ROADMAP.md) — development phases and status
-- [Faker provider mapping](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) — type-to-provider reference
+- **[Docs index](docs/README.md)** — overview and links to all documentation
+- **User guides** (step-by-step, with runnable examples):
+  - [Getting started](docs/user_guides/getting_started.md) — install, first model, first factory
+  - [Models and factories](docs/user_guides/models_and_factories.md) — Pydantic, dataclasses, batches
+  - [Reproducible data](docs/user_guides/reproducible_data.md) — seeding for tests and demos
+  - [Custom types](docs/user_guides/custom_types.md) — `FakerType` subclasses and `faker_kwargs`
+- [Package plan](docs/capper_package_plan.md) — design and rationale
+- [Roadmap](docs/ROADMAP.md) — development phases and status
+- [Faker provider mapping](docs/FAKER_PROVIDERS.md) — which Faker method each type uses
