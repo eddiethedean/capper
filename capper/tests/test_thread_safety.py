@@ -17,6 +17,7 @@ def test_use_faker_per_thread_isolation() -> None:
     def thread_de() -> None:
         use_faker(Faker("de_DE"))
         assert _get_faker() is not None
+
         # Build a model; German locale often produces umlauts in names
         class User(BaseModel):
             name: Name
@@ -30,6 +31,7 @@ def test_use_faker_per_thread_isolation() -> None:
     def thread_en() -> None:
         use_faker(Faker("en_US"))
         assert _get_faker() is not None
+
         class User(BaseModel):
             name: Name
 
@@ -59,6 +61,7 @@ def test_seed_per_thread_isolation() -> None:
 
     def thread_seed_42() -> None:
         seed(42)
+
         class User(BaseModel):
             name: Name
 
@@ -69,6 +72,7 @@ def test_seed_per_thread_isolation() -> None:
 
     def thread_seed_99() -> None:
         seed(99)
+
         class User(BaseModel):
             name: Name
 
@@ -87,6 +91,7 @@ def test_seed_per_thread_isolation() -> None:
     assert "42" in results and "99" in results
     # Same seed in same thread gives same result when run again
     seed(42)
+
     class User(BaseModel):
         name: Name
 

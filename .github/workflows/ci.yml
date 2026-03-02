@@ -45,7 +45,7 @@ jobs:
         run: mypy capper
 
       - name: Run tests
-        run: pytest capper/tests -v
+        run: pytest capper/tests -v -m "not benchmark" --cov=capper --cov-report=term-missing --cov-fail-under=98
 
       - name: Build docs
         run: mkdocs build --strict

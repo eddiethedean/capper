@@ -204,3 +204,24 @@ def test_use_faker_switches_global_faker() -> None:
         assert user1.name == user2.name
     finally:
         use_faker(None)
+
+
+def test_performance_1000_builds_under_threshold() -> None:
+    """Lightweight performance gate: 1000 ModelFactory.build() calls complete in under 30s."""
+    import time
+
+    from polyfactory.factories.pydantic_factory import ModelFactory
+    from pydantic import BaseModel
+
+    class User(BaseModel):
+        name: Name
+        email: Email
+
+    class UserFactory(ModelFactory[User]):
+        pass
+
+    start = time.perf_counter()
+    for _ in range(1000):
+        UserFactory.build()
+    elapsed = time.perf_counter() - start
+    assert elapsed < 30.0, f"1000 builds took {elapsed:.1f}s (threshold 30s)"

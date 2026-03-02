@@ -133,7 +133,7 @@ pytest capper/tests
 
 Lint and type-check: `ruff check .`, `ruff format .`, `mypy capper`.
 
-Run tests with coverage: `pytest capper/tests --cov=capper --cov-report=term-missing`.
+Run tests with coverage: `pytest capper/tests --cov=capper --cov-report=term-missing`. CI requires coverage ≥ 98% for the `capper/` package (`--cov-fail-under=98`).
 
 **Reproducibility:** Capper and Polyfactory share the same Faker instance, so one seed controls both capper types and built-in types (`str`, `int`, etc.):
 

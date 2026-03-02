@@ -22,6 +22,9 @@ wheels/
 *.egg
 .installed.cfg
 
+# pytest-benchmark autosave
+.benchmarks/
+
 # Virtual environments
 .venv/
 venv/

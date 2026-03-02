@@ -76,7 +76,7 @@ def _install_pydantic_schema() -> None:
         from pydantic import GetCoreSchemaHandler
         from pydantic_core import CoreSchema, core_schema
     except ImportError:
-        return
+        return  # pragma: no cover — pydantic not installed
 
     def __get_pydantic_core_schema__(
         cls, source_type: Any, handler: GetCoreSchemaHandler

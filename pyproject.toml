@@ -25,6 +25,7 @@ hypothesis = [
 ]
 dev = [
     "pytest>=7.0",
+    "pytest-benchmark>=4.0",
     "pytest-cov>=4.0",
     "pytest-xdist>=3.0",
     "pydantic>=2.0",
@@ -52,6 +53,14 @@ include = ["capper*"]
 testpaths = ["capper/tests"]
 pythonpath = ["."]
 addopts = ["-v", "--tb=short"]
+markers = ["benchmark: performance benchmarks (deselect with -m 'not benchmark')"]
+
+[tool.coverage.run]
+source = ["capper"]
+omit = ["capper/tests/*"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover"]
 
 [tool.ruff]
 line-length = 100

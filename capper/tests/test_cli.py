@@ -49,3 +49,30 @@ def test_type_registry_includes_known_type() -> None:
     assert "Name" in registry
     name_type = registry["Name"]
     assert getattr(name_type, "faker_provider", "") == "name"
+
+
+@pytest.mark.skipif(sys.version_info < (3, 10), reason="capper CLI uses Python 3.10+ syntax")
+def test_cli_unknown_type_exits_nonzero_and_stderr(capsys: pytest.CaptureFixture[str]) -> None:
+    """Passing an unknown type name prints to stderr and returns 1."""
+    orig_argv = sys.argv
+    try:
+        sys.argv = ["capper", "generate", "NonExistentType", "--count", "1"]
+        exit_code = cli.main()
+        assert exit_code == 1
+        err = capsys.readouterr().err
+        assert "Unknown type" in err
+        assert "NonExistentType" in err
+    finally:
+        sys.argv = orig_argv
+
+
+@pytest.mark.skipif(sys.version_info < (3, 10), reason="capper CLI uses Python 3.10+ syntax")
+def test_cli_seed_used() -> None:
+    """Generate with --seed runs and uses seed (deterministic output)."""
+    orig_argv = sys.argv
+    try:
+        sys.argv = ["capper", "generate", "Name", "--count", "2", "--seed", "42"]
+        exit_code = cli.main()
+        assert exit_code == 0
+    finally:
+        sys.argv = orig_argv
