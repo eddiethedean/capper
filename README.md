@@ -134,6 +134,11 @@ Use `-n`/`--count` for the number of rows and `-s`/`--seed` for reproducible out
 
 Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For version ranges, upgrade guidance, the versioning policy, and the deprecation policy, see [Compatibility](docs/compatibility.md).
 
+### Support & maintenance
+
+- Supported Python and dependency versions, along with backport expectations for the 1.0.x line, are documented in [docs/compatibility.md](docs/compatibility.md).
+- Critical bug fixes and compatibility fixes may be backported to the latest 1.0.x release; new features land in minor releases.
+
 ## What's new in 0.4.0
 
 - **Thread safety:** Capper is now thread-safe via a per-thread Faker proxy; `seed()` and `use_faker()` only affect the current thread.

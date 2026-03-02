@@ -33,6 +33,8 @@ nav:
       - Dataclasses and attrs: user_guides/dataclasses_and_attrs.md
       - Test setup templates: user_guides/test_setup_templates.md
       - Project structure: user_guides/project_structure.md
+  - Maintenance review: maintenance_review.md
+  - Release checklist: release_checklist.md
   - Example notebooks: notebooks/README.md
   - API Reference: api.md
 

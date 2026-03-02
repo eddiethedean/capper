@@ -8,13 +8,19 @@ Capper is **thread-safe**: each thread has its own Faker instance. The module-le
 
 ## Supported versions
 
-Capper is tested against:
+Capper 0.5.x and 1.0.x are tested against:
 
 - **Python:** 3.10, 3.11, 3.12, 3.13 (see [CI matrix](https://github.com/eddiethedean/capper/blob/main/.github/workflows/ci.yml)); minimum supported is **3.10** (Python 3.9 is EOL and no longer supported).
 - **Faker:** >= 20.0 (see [pyproject.toml](https://github.com/eddiethedean/capper/blob/main/pyproject.toml) `dependencies`).
 - **Polyfactory:** >= 2.0.
 
 Optional extras (Pydantic, Hypothesis) have their own version constraints in `pyproject.toml`.
+
+### Backwards-compatibility and backports
+
+- **Stable line:** For Capper 1.0.x, we aim to keep the documented public API stable; breaking changes will only ship in a future 2.0.0.
+- **Backports:** Critical bug fixes (including compatibility fixes for supported Python/Faker/Polyfactory versions) may be backported to the latest 1.0.x release.
+- **What is _not_ backported:** New features, new semantic types, and non-trivial behavior changes generally land in new minor releases rather than patch releases.
 
 ## Upgrading Faker
 

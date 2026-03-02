@@ -115,10 +115,10 @@ High-level development phases and current status. See [capper_package_plan.md](c
 ## Phase 12 — Production-ready 1.0 and long-term maintenance
 
 - [ ] Cut a 1.0.0 release once Phase 9–11 items are complete and the API surface is stable.
-- [ ] Establish a support and maintenance policy (e.g. supported Python and dependency versions, backport scope).
-- [ ] Add or refine project governance docs (issue and PR templates, code of conduct, release checklist).
-- [ ] Monitor and respond to bug reports around Faker and Polyfactory upstream changes; document any needed workarounds.
-- [ ] Periodically review docs, examples, and CI to ensure they stay aligned with real-world usage and current best practices.
+- [x] Establish a support and maintenance policy (e.g. supported Python and dependency versions, backport scope). **Done:** See `docs/compatibility.md` (supported versions and backport policy) and README “Support & maintenance”.
+- [x] Add or refine project governance docs (issue and PR templates, code of conduct, release checklist). **Done:** See `.github/ISSUE_TEMPLATE/*`, `.github/pull_request_template.md`, `CODE_OF_CONDUCT.md`, `docs/release_checklist.md`, and `MAINTAINERS.md`.
+- [x] Monitor and respond to bug reports around Faker and Polyfactory upstream changes; document any needed workarounds. **Done:** Added scheduled “latest deps” workflow (`.github/workflows/compat-latest.yml`) and documented handling in `docs/compatibility.md`.
+- [x] Periodically review docs, examples, and CI to ensure they stay aligned with real-world usage and current best practices. **Done:** See `docs/maintenance_review.md` and use it as part of release/maintenance cadence.
 
 ---
 
@@ -136,7 +136,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
-*Last updated: 2026-03-02 (Phase 11 complete; 0.5.0 unreleased).*
+*Last updated: 2026-03-02 (Phase 11 complete; 0.5.0 released).*
 
 ---
 
