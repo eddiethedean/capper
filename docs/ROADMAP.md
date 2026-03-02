@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–12 done. Current release: 1.0.0 (Phase 12 — production-ready, governance, and long-term maintenance).
+**Quick reference:** Phases 1–12 done. Current stable line: 1.x (Phase 12 — production-ready, governance, and long-term maintenance).
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–12 complete (Phase 10: public API definition, deprecation helper, versioning and upgrade guidance; Phase 11: ecosystem docs, guides, and CLI UX polish; Phase 12: 1.0.0, governance, security, and long-term maintenance).
+- **Progress:** Phases 1–12 complete (Phase 10: public API definition, deprecation helper, versioning and upgrade guidance; Phase 11: ecosystem docs, guides, and CLI UX polish; Phase 12: 1.0.0 and subsequent 1.x releases, governance, security, and long-term maintenance).
 
-*Recent: Phase 12 — 1.0.0 production-ready release, governance and maintenance docs, security policy and checks, and scheduled compatibility monitoring.*
+*Recent: Phase 12 — 1.x production-ready releases, governance and maintenance docs, security policy and checks, and scheduled compatibility monitoring.*
 
 ---
 
@@ -132,7 +132,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. |
 | 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. |
 | 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations. |
-| 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, security, and a production-ready, stable release. **Current release.** |
+| 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, security, and a production-ready, stable release. |
 
 ---
 
