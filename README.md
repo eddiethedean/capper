@@ -3,6 +3,191 @@
 [![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://pypi.org/project/capper/)
 [![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI%20(lint%2C%20types%2C%20tests%2C%20docs))](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
+[![Docs](https://readthedocs.org/projects/capper/badge/?version=latest)](https://capper.readthedocs.io/en/latest/)
+[![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
+[![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
+
+Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automatic [Polyfactory](https://polyfactory.litestar.dev/) integration.
+
+**Source:** [github.com/eddiethedean/capper](https://github.com/eddiethedean/capper) · **Docs:** [capper.readthedocs.io](https://capper.readthedocs.io/en/latest/)
+
+---
+
+## What is Capper?
+
+Capper gives you **semantic Faker types** (like `Name`, `Email`, `Price`) that:
+
+- **Zero configuration**: just import a type and use it in your models; Polyfactory knows how to generate values.
+- **Strongly typed**: your models communicate intent instead of bare `str` fields.
+- **Multi-backend**: works with Pydantic, dataclasses, attrs, and other Polyfactory-supported model types.
+- **Thread-safe & reproducible**: per-thread Faker with helpers for seeding and locales.
+
+You import types from the top level:
+
+```python
+from capper import Name, Email
+```
+
+and use them anywhere you would use a string (or the relevant base type).
+
+For the full story, see the **[Capper documentation](https://capper.readthedocs.io/en/latest/)**.
+
+---
+
+## Installation
+
+```bash
+pip install capper
+```
+
+- **Python**: 3.10+
+- **Core deps**: Faker ≥ 20.0, Polyfactory ≥ 2.0 (installed automatically)
+- **Optional extras**:
+  - **Pydantic support**: `pip install capper[pydantic]`
+  - **Hypothesis strategies**: `pip install capper[hypothesis]`
+
+Step‑by‑step instructions live in the **[Getting started guide](https://capper.readthedocs.io/en/latest/user_guides/getting_started/)**.
+
+---
+
+## Quick example
+
+Using Capper with a Pydantic model and Polyfactory:
+
+```python
+from pydantic import BaseModel
+from capper import Name, Email
+from polyfactory.factories.pydantic_factory import ModelFactory
+
+
+class User(BaseModel):
+    name: Name
+    email: Email
+
+
+class UserFactory(ModelFactory[User]):
+    pass
+
+
+if __name__ == "__main__":
+    user = UserFactory.build()
+    print(user)
+```
+
+For more patterns (dataclasses and attrs, FastAPI, Django-style service layers, seeding, and custom types), see the **[User guides](https://capper.readthedocs.io/en/latest/#user-guides)**.
+
+---
+
+## CLI
+
+Generate fake values from the command line:
+
+```bash
+capper generate Name Email --count 5
+capper generate Name Email --count 3 --seed 42
+```
+
+- **Types**: same names as the Python types (e.g. `Name`, `Email`, `Address`).
+- **Flags**:
+  - **`-n` / `--count`**: number of rows
+  - **`-s` / `--seed`**: seed for reproducible output
+
+CLI usage examples are covered in the getting started and models/factories guides on Read the Docs.
+
+---
+
+## Types and providers
+
+Capper exports all public types from the top level, for example:
+
+```python
+from capper import Name, FirstName, LastName, Address, Email, Price
+```
+
+To see:
+
+- the **full list of types**, and  
+- which **Faker provider** each one uses,
+
+visit the **[Faker providers](https://capper.readthedocs.io/en/latest/FAKER_PROVIDERS/)** page.
+
+---
+
+## Documentation
+
+Most detail lives in the hosted docs:
+
+- **Docs home**: <https://capper.readthedocs.io/en/latest/>
+- **User guides** (with runnable examples):
+  - [Getting started](https://capper.readthedocs.io/en/latest/user_guides/getting_started/)
+  - [Models and factories](https://capper.readthedocs.io/en/latest/user_guides/models_and_factories/)
+  - [Reproducible data](https://capper.readthedocs.io/en/latest/user_guides/reproducible_data/)
+  - [Custom types](https://capper.readthedocs.io/en/latest/user_guides/custom_types/)
+  - [FastAPI + Pydantic](https://capper.readthedocs.io/en/latest/user_guides/fastapi_pydantic/)
+  - [Django patterns](https://capper.readthedocs.io/en/latest/user_guides/django_patterns/)
+  - [Dataclasses and attrs](https://capper.readthedocs.io/en/latest/user_guides/dataclasses_and_attrs/)
+  - [Test setup templates](https://capper.readthedocs.io/en/latest/user_guides/test_setup_templates/)
+  - [Project structure](https://capper.readthedocs.io/en/latest/user_guides/project_structure/)
+- **Types & API**:
+  - [Faker provider mapping](https://capper.readthedocs.io/en/latest/FAKER_PROVIDERS/)
+  - [API reference](https://capper.readthedocs.io/en/latest/api/)
+- **Design & roadmap**:
+  - [Package plan](https://capper.readthedocs.io/en/latest/capper_package_plan/)
+  - [Roadmap](https://capper.readthedocs.io/en/latest/ROADMAP/)
+- **Stability & support**:
+  - [Compatibility](https://capper.readthedocs.io/en/latest/compatibility/)
+  - [Security](https://capper.readthedocs.io/en/latest/SECURITY/)
+
+If you are unsure where to start, begin at the docs home and follow the “User guides” flow.
+
+---
+
+## Compatibility and support
+
+- **Runtime targets**: Python 3.10+, Faker ≥ 20.0, Polyfactory ≥ 2.0.
+- **Semantic versioning**: Capper follows SemVer; the 1.x line maintains a stable public API.
+- **Support & backports**: policy, supported versions, and backport rules are described in the **[Compatibility](https://capper.readthedocs.io/en/latest/compatibility/)** docs.
+
+---
+
+## Development
+
+```bash
+pip install -e ".[dev]"
+pytest capper/tests
+```
+
+- **Lint & format**: `ruff format .` and `ruff check .`
+- **Type checking**: `mypy capper`
+- **Coverage**:
+
+  ```bash
+  pytest capper/tests --cov=capper --cov-report=term-missing --cov-fail-under=98
+  ```
+
+For contributor guidance (branching, testing, release process), see `CONTRIBUTING.md` and the maintenance‑oriented guides on Read the Docs.
+
+---
+
+## Security
+
+- **CI security checks**:
+  - `pip-audit` runs in CI to scan dependencies.
+  - A scheduled “latest deps” workflow tests Capper against current Faker and Polyfactory releases.
+- **Policy & reporting**: see the **[Security page](https://capper.readthedocs.io/en/latest/SECURITY/)** for how to report issues and which versions are supported.
+
+---
+
+## License
+
+Capper is licensed under the **MIT License**. See `LICENSE` for details.
+
+# Capper
+
+[![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://pypi.org/project/capper/)
+[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI%20(lint%2C%20types%2C%20tests%2C%20docs))](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
+[![Docs](https://readthedocs.org/projects/capper/badge/?version=latest)](https://capper.readthedocs.io/en/latest/)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
 [![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 
@@ -40,80 +225,15 @@ Requires **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. Option
 
 ## Usage
 
-**With Pydantic** (requires `capper[pydantic]`):
-
-```python
-from pydantic import BaseModel
-from capper import Name, Email
-from polyfactory.factories.pydantic_factory import ModelFactory
-
-class User(BaseModel):
-    name: Name
-    email: Email
-
-class UserFactory(ModelFactory[User]):
-    pass
-
-user = UserFactory.build()
-print(user.name)
-print(user.email)
-```
-
-Example output (varies each run):
-
-```
-Paul Blair
-linda00@example.net
-```
-
-**With dataclasses** (no Pydantic needed):
-
-```python
-from dataclasses import dataclass
-from capper import Name, Email
-from polyfactory.factories import DataclassFactory
-
-@dataclass
-class User:
-    name: Name
-    email: Email
-
-class UserFactory(DataclassFactory[User]):
-    pass
-
-user = UserFactory.build()
-print(user.name)
-print(user.email)
-```
-
-Example output (varies each run):
-
-```
-Carly Jenkins
-oevans@example.com
-```
-
-Works automatically. No extra steps. IDE autocompletion.
-
-**New to Capper?** See the [Getting started](docs/user_guides/getting_started.md) guide and run the examples in `docs/examples/`.
+- **Quick start**: define a Pydantic model or dataclass using Capper types (e.g. `Name`, `Email`), create a Polyfactory factory, and call `Factory.build()` / `Factory.batch()`.
+- **Guided examples**: see the docs:
+  - [Getting started](docs/user_guides/getting_started.md) — install, first model, first factory
+  - [Models and factories](docs/user_guides/models_and_factories.md) — Pydantic vs dataclasses, batches, mixing Capper and built-in types
 
 ## Available types
 
-- **Person**: `Name`, `FirstName`, `LastName`, `Job`
-- **Geo**: `Address`, `City`, `Country`
-- **Internet**: `Email`, `URL`, `IP`, `UserName`
-- **Commerce**: `Company`, `Product`, `Currency`, `Price`
-- **Date/time**: `Date`, `DateTime`, `Time`
-- **Text**: `Paragraph`, `Sentence`
-- **Phone**: `PhoneNumber`, `CountryCallingCode`
-- **Finance**: `CreditCardNumber`, `CreditCardExpiry`, `CreditCardProvider`
-- **File**: `FilePath`, `FileName`, `FileExtension`
-- **Misc**: `UUID`
-- **Color**: `HexColor`
-- **Barcode**: `EAN13`, `EAN8`
-
-Import from the top level: `from capper import Name, Email, Address, ...`  
-See [docs/FAKER_PROVIDERS.md](https://github.com/eddiethedean/capper/blob/main/docs/FAKER_PROVIDERS.md) for the Faker provider used by each type.
+Import from the top level: `from capper import Name, Email, Address, ...`.  
+See the **[Faker provider mapping](docs/FAKER_PROVIDERS.md)** (or the hosted docs) for the full list of types and which Faker provider each uses.
 
 **Optional kwargs:** Subclass `FakerType` and set `faker_kwargs` to pass arguments to the Faker provider (e.g. `faker_kwargs = {"nb_words": 10}` for `Sentence`).
 
@@ -162,28 +282,7 @@ Lint and type-check: `ruff check .`, `ruff format .`, `mypy capper`.
 
 Run tests with coverage: `pytest capper/tests --cov=capper --cov-report=term-missing`. CI requires coverage ≥ 98% for the `capper/` package (`--cov-fail-under=98`).
 
-**Reproducibility:** Capper and Polyfactory share the same Faker instance, so one seed controls both capper types and built-in types (`str`, `int`, etc.):
-
-```python
-from capper import seed, Name
-from polyfactory.factories.pydantic_factory import ModelFactory
-from pydantic import BaseModel
-
-class User(BaseModel):
-    name: Name
-
-class UserFactory(ModelFactory[User]):
-    pass
-
-# Either way seeds the shared Faker (same effect):
-seed(42)
-user1 = UserFactory.build()
-
-UserFactory.seed_random(42)
-user2 = UserFactory.build()  # same data as user1 if you seed the same before each
-```
-
-Use `UserFactory.__random_seed__ = 42` to seed once when the factory class is created, or call `seed(42)` / `UserFactory.seed_random(42)` before each build for identical builds. For a custom locale (e.g. German names), use **`use_faker(Faker('de_DE'))`** so both Capper and Polyfactory use the same Faker instance; see [Reproducible data](docs/user_guides/reproducible_data.md#locales-and-custom-faker).
+For seeding, locales, and reproducible test data patterns, see **[Reproducible data](docs/user_guides/reproducible_data.md)**.
 
 ## Publishing
 
