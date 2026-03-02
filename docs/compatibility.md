@@ -10,7 +10,7 @@ Capper is **thread-safe**: each thread has its own Faker instance. The module-le
 
 Capper is tested against:
 
-- **Python:** 3.10, 3.11, 3.12 (see [CI matrix](https://github.com/eddiethedean/capper/blob/main/.github/workflows/ci.yml)); minimum supported is **3.10** (Python 3.9 is EOL and no longer supported).
+- **Python:** 3.10, 3.11, 3.12, 3.13 (see [CI matrix](https://github.com/eddiethedean/capper/blob/main/.github/workflows/ci.yml)); minimum supported is **3.10** (Python 3.9 is EOL and no longer supported).
 - **Faker:** >= 20.0 (see [pyproject.toml](https://github.com/eddiethedean/capper/blob/main/pyproject.toml) `dependencies`).
 - **Polyfactory:** >= 2.0.
 

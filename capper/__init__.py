@@ -11,7 +11,7 @@ try:
 
     __version__ = _version("capper")
 except Exception:  # Package not installed (e.g. dev tree) or metadata missing
-    __version__ = "0.3.0"
+    __version__ = "0.4.0"
 
 from .barcode import EAN8, EAN13
 from .base import FakerType, faker, seed, use_faker

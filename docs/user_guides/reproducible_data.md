@@ -1,6 +1,6 @@
 # Reproducible data (seeding)
 
-For tests or demos you often want the same fake data every run. Capper and Polyfactory share one Faker instance, so a single seed gives you reproducible Capper types and built-in types (`str`, `int`, etc.).
+For tests or demos you often want the same fake data every run. Capper and Polyfactory share the same per-thread Faker instance via a proxy, so within a given thread a single seed gives you reproducible Capper types and built-in types (`str`, `int`, etc.).
 
 ## Using `seed()`
 
@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
 ## Using `Factory.seed_random()`
 
-Polyfactory’s **`YourFactory.seed_random(seed_value)`** seeds the same shared Faker instance. So you can use either:
+Polyfactory’s **`YourFactory.seed_random(seed_value)`** seeds the same per-thread Faker instance (through the shared proxy). So you can use either:
 
 - **`seed(42)`** then **`UserFactory.build()`**, or  
 - **`UserFactory.seed_random(42)`** then **`UserFactory.build()`**

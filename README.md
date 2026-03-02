@@ -24,6 +24,7 @@ The `ci.yml` workflow runs on pushes and PRs to `main` and includes:
 - **Zero config** — Import a type; Polyfactory uses the right Faker provider. No manual registration.
 - **Typed** — Use `Name`, `Email`, `PhoneNumber`, etc. in your models for clear intent and IDE support.
 - **Multi-backend** — Works with Pydantic, dataclasses, attrs, and other [Polyfactory-supported](https://polyfactory.litestar.dev/) model types.
+- **Thread-safe** — Per-thread Faker via a proxy; seeding and locales are isolated per thread, so concurrent tests are safe.
 - **Optional Pydantic** — Install `capper` alone for dataclasses/attrs; add `capper[pydantic]` when you use Pydantic models.
 
 ## Install
@@ -133,6 +134,12 @@ Use `-n`/`--count` for the number of rows and `-s`/`--seed` for reproducible out
 
 Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For version ranges, upgrade guidance, and the deprecation policy, see [Compatibility](docs/compatibility.md).
 
+## What's new in 0.4.0
+
+- **Thread safety:** Capper is now thread-safe via a per-thread Faker proxy; `seed()` and `use_faker()` only affect the current thread.
+- **Reliability and coverage:** Phase 9 adds a coverage gate (≥ 98% for `capper/`), targeted edge-case tests, and a lightweight performance check in CI.
+- **Tooling and docs:** CI runs Ruff, mypy, tests (with coverage gate), and a strict MkDocs build on all supported Python versions; docs and roadmap have been updated to reflect Phase 9.
+
 ## Development
 
 ```bash
@@ -173,7 +180,7 @@ Releases are built and published to PyPI via [GitHub Actions](https://github.com
 
 1. Update [CHANGELOG.md](CHANGELOG.md): move Unreleased entries into a new version section and date it.
 2. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
-3. Create a GitHub release (tag e.g. `v0.3.0`). The workflow runs tests, builds the package, and uploads to PyPI.
+3. Create a GitHub release (tag e.g. `v0.4.0`). The workflow runs tests, builds the package, and uploads to PyPI.
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 

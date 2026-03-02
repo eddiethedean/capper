@@ -42,29 +42,56 @@ capper/
 
 ---
 
-## 3. Automatic Registration
+## 3. Automatic registration and Faker proxy
+
+Capper uses a per-thread Faker proxy and registers providers with Polyfactory so that factories can generate values for any `FakerType` subclass.
 
 ```python
-# base.py
-from polyfactory.registry import register_provider
+# base.py (simplified)
+from threading import local
+
 from faker import Faker
+from polyfactory.factories.base import BaseFactory
 
-faker = Faker()
+_faker_local = local()
 
-class FakerType:
-    faker_provider: str  # subclass must define this
 
-    def __init_subclass__(cls, **kwargs):
+def _get_faker() -> Faker:
+    try:
+        instance = _faker_local.current
+    except AttributeError:
+        instance = None
+    if instance is None:
+        instance = Faker()
+        _faker_local.current = instance
+    return instance
+
+
+class _FakerProxy:
+    def __getattr__(self, name: str) -> object:
+        return getattr(_get_faker(), name)
+
+
+faker = _FakerProxy()
+BaseFactory.__faker__ = faker
+
+
+class FakerType(str):
+    faker_provider: str = ""
+
+    def __init_subclass__(cls, **kwargs: object) -> None:
         super().__init_subclass__(**kwargs)
-        register_provider(cls, lambda *args, faker=faker, cls=cls, **kwargs: getattr(faker, cls.faker_provider)())
+        provider = getattr(cls, "faker_provider", None)
+        if provider:
+            _register(cls, provider)
 ```
 
-- Every subclass automatically registers with Polyfactory.
-- No manual registration required.
+- Every subclass with a `faker_provider` automatically registers with Polyfactory.
+- The proxy keeps Capper **thread-safe**: each thread gets its own Faker instance, but factories always talk to the shared proxy.
 
 ---
 
-## 4. Example Semantic Types
+## 4. Example semantic types
 
 ```python
 # person.py
