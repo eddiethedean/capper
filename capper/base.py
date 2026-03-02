@@ -53,11 +53,13 @@ def _install_pydantic_schema() -> None:
     except ImportError:
         return
 
-    def __get_pydantic_core_schema__(source_type: Any, handler: GetCoreSchemaHandler) -> CoreSchema:
+    def __get_pydantic_core_schema__(
+        cls, source_type: Any, handler: GetCoreSchemaHandler
+    ) -> CoreSchema:
         """Validate as str then coerce to the FakerType subclass."""
-        return core_schema.no_info_after_validator_function(source_type, handler(str))
+        return core_schema.no_info_after_validator_function(cls, handler(str))
 
-    FakerType.__get_pydantic_core_schema__ = __get_pydantic_core_schema__  # type: ignore[attr-defined]
+    FakerType.__get_pydantic_core_schema__ = classmethod(__get_pydantic_core_schema__)  # type: ignore[attr-defined]
 
 
 class FakerType(str):
@@ -81,7 +83,7 @@ class FakerType(str):
 _install_pydantic_schema()
 
 
-def _register(cls: type, provider_name: str) -> None:
+def _register(cls: type[FakerType], provider_name: str) -> None:
     """Register a FakerType subclass with Polyfactory so factories can generate values."""
     if not hasattr(faker, provider_name):
         raise AttributeError(
