@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–11 done. Current release: 0.4.1 (Phase 10 — API stability and versioning); Phase 11 changes are on `main` and will ship in 0.5.0.
+**Quick reference:** Phases 1–11 done. Current release: 0.5.0 (Phase 11 — ecosystem docs and UX); 1.0.0 (Phase 12) will finalize support policy and long-term maintenance.
 
 ---
 
@@ -130,8 +130,8 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
 | 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. |
-| 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. **Current release.** |
-| 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations (Phase 11 work is merged on `main` and will be released as 0.5.0). |
+| 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. |
+| 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations. **Current release.** |
 | 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, and a production-ready, stable release. |
 
 ---

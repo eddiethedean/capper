@@ -9,6 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes yet._
 
+## [0.5.0] - 2026-03-02
+
+### Added
+
+- **Ecosystem guides and examples (Phase 11):** New user guides for FastAPI/Pydantic, Django-style patterns, dataclasses/attrs-heavy projects, test setup templates, and project structure (`docs/user_guides/*`), each with runnable examples in `docs/examples/*`.
+- **CLI UX improvements:** Enhanced `capper` CLI help/description and unknown-type error messages with suggestions and clearer guidance; see `capper/cli.py` and `capper/tests/test_cli.py`.
+- **Docs navigation and extensibility:** Updated MkDocs navigation and docs index to surface the new guides; added a “Known type packs and integrations” section in `docs/extending.md`.
+
 ## [0.4.1] - 2026-03-02
 
 ### Added
@@ -52,7 +60,8 @@ _No unreleased changes yet._
 - Optional Pydantic support; multi-backend (Pydantic, dataclasses, attrs).
 - Unit tests and usage examples.
 
-[Unreleased]: https://github.com/eddiethedean/capper/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/eddiethedean/capper/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/eddiethedean/capper/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/eddiethedean/capper/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/eddiethedean/capper/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/eddiethedean/capper/compare/v0.2.0...v0.3.0
