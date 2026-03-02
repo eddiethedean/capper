@@ -12,10 +12,17 @@ from typing import Any
 from faker import Faker
 from polyfactory.factories.base import BaseFactory
 
-faker = Faker()
 
-# Share this Faker with Polyfactory so one seed controls both capper types and built-in types.
-BaseFactory.__faker__ = faker
+def _set_faker_instance(instance: Faker) -> None:
+    """Set the shared Faker instance for Capper and Polyfactory."""
+    global faker
+    faker = instance
+    BaseFactory.__faker__ = instance
+
+
+# Module-level shared Faker; used by Capper types and Polyfactory factories.
+faker: Faker
+_set_faker_instance(Faker())
 
 
 def seed(seed_value: int) -> None:
@@ -40,9 +47,7 @@ def use_faker(instance: Faker) -> None:
     Args:
         instance: The Faker instance to use (e.g. Faker('de_DE')).
     """
-    global faker
-    faker = instance
-    BaseFactory.__faker__ = instance
+    _set_faker_instance(instance)
 
 
 def _install_pydantic_schema() -> None:

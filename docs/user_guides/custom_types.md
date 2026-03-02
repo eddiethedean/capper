@@ -91,6 +91,12 @@ if __name__ == "__main__":
     print(e.name, e.date)
 ```
 
+## How this fits into Capper's design
+
+Capper’s core pieces work together to keep your types simple while handling the wiring for you:
+
+- **`FakerType`**: a thin `str` subclass that only needs `faker_provider` (and optional `faker_kwargs`). When you subclass it, Capper automatically:\n  - Registers a provider with Polyfactory so factories can generate values.\n  - Installs a Pydantic schema hook (when `capper[pydantic]` is installed) so your type validates as `str` and is coerced to your subclass.\n- **Shared Faker instance**: Capper and Polyfactory share one Faker via the module-level `faker`, `seed()`, and `use_faker()` helpers; seeding once controls both built-in fields and Capper types.\n- **Type registry and Hypothesis strategies**: Capper discovers all exported `FakerType` subclasses from the package’s public API and registers Hypothesis strategies so `st.from_type(YourFakerType)` works once you `import capper.strategies`.\n\nAs long as you follow the simple contract (subclass `FakerType`, set `faker_provider`, and optionally `faker_kwargs`), the rest of the system—factories, validation, CLI, and property-based tests—stays consistent and extensible without extra configuration.
+
 ## Run the examples
 
 From the repo root (with Capper installed):

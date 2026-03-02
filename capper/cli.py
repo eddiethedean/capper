@@ -2,29 +2,17 @@
 
 import argparse
 import sys
-from typing import Type
+from typing import Mapping, Sequence, Type
 
 import capper
 
 from .base import FakerType, faker, seed
+from .registry import build_type_registry
 
 
-def _type_registry() -> dict[str, Type[FakerType]]:
+def _type_registry() -> Mapping[str, Type[FakerType]]:
     """Map type name -> FakerType subclass (only types with faker_provider)."""
-    registry: dict[str, Type[FakerType]] = {}
-    for name in getattr(capper, "__all__", []):
-        if name in ("FakerType", "faker", "seed", "use_faker"):
-            continue
-        obj = getattr(capper, name, None)
-        provider = getattr(obj, "faker_provider", None)
-        if (
-            isinstance(obj, type)
-            and issubclass(obj, FakerType)
-            and isinstance(provider, str)
-            and len(provider) > 0
-        ):
-            registry[name] = obj
-    return registry
+    return build_type_registry(capper)
 
 
 def _generate_one(typ: Type[FakerType]) -> str:
@@ -33,6 +21,15 @@ def _generate_one(typ: Type[FakerType]) -> str:
     kwargs = getattr(typ, "faker_kwargs", None) or {}
     value = getattr(faker, provider)(**kwargs)
     return str(value)
+
+
+def _generate_rows(types: Sequence[Type[FakerType]], count: int) -> list[str]:
+    """Generate tab-separated rows for the given types."""
+    rows: list[str] = []
+    for _ in range(max(0, count)):
+        row = [_generate_one(t) for t in types]
+        rows.append("\t".join(row))
+    return rows
 
 
 def cmd_generate(args: argparse.Namespace) -> int:
@@ -49,10 +46,8 @@ def cmd_generate(args: argparse.Namespace) -> int:
     if args.seed is not None:
         seed(args.seed)
 
-    count = max(0, args.count)
-    for _ in range(count):
-        row = [_generate_one(t) for t in types]
-        print("\t".join(row))
+    for line in _generate_rows(types, args.count):
+        print(line)
     return 0
 
 

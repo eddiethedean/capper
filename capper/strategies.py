@@ -10,57 +10,15 @@ from typing import Type, TypeVar, cast
 
 from hypothesis import strategies as st
 
-from .barcode import EAN8, EAN13
+import capper
+
 from .base import FakerType, faker
-from .color import HexColor
-from .commerce import Company, Currency, Price, Product
-from .date_time import Date, DateTime, Time
-from .file import FileExtension, FileName, FilePath
-from .finance import CreditCardExpiry, CreditCardNumber, CreditCardProvider
-from .geo import Address, City, Country
-from .internet import IP, URL, Email, UserName
-from .misc import UUID
-from .person import FirstName, Job, LastName, Name
-from .phone import CountryCallingCode, PhoneNumber
-from .text import Paragraph, Sentence
+from .registry import build_type_registry
 
 T = TypeVar("T", bound=FakerType)
 
-# All built-in FakerType subclasses for registration
-_BUILTIN_TYPES: tuple[type[FakerType], ...] = (
-    Address,
-    City,
-    Company,
-    Country,
-    CountryCallingCode,
-    CreditCardExpiry,
-    CreditCardNumber,
-    CreditCardProvider,
-    Currency,
-    Date,
-    DateTime,
-    EAN13,
-    EAN8,
-    Email,
-    FileExtension,
-    FileName,
-    FilePath,
-    FirstName,
-    HexColor,
-    IP,
-    Job,
-    LastName,
-    Name,
-    Paragraph,
-    PhoneNumber,
-    Price,
-    Product,
-    Sentence,
-    Time,
-    URL,
-    UUID,
-    UserName,
-)
+# All built-in FakerType subclasses for registration, discovered from the public API.
+_BUILTIN_TYPES: tuple[type[FakerType], ...] = tuple(build_type_registry(capper).values())
 
 
 def for_type(cls: Type[T]) -> st.SearchStrategy[T]:
