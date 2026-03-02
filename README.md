@@ -194,6 +194,11 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
   - [Models and factories](docs/user_guides/models_and_factories.md) — Pydantic, dataclasses, batches
   - [Reproducible data](docs/user_guides/reproducible_data.md) — seeding for tests and demos
   - [Custom types](docs/user_guides/custom_types.md) — `FakerType` subclasses and `faker_kwargs`
+  - [FastAPI + Pydantic](docs/user_guides/fastapi_pydantic.md) — API payloads and tests using Capper-backed Pydantic models
+  - [Django patterns](docs/user_guides/django_patterns.md) — Django-style schemas, factories, and service tests
+  - [Dataclasses and attrs](docs/user_guides/dataclasses_and_attrs.md) — non-Pydantic projects with `DataclassFactory`
+  - [Test setup templates](docs/user_guides/test_setup_templates.md) — pytest/Hypothesis fixtures and seeding patterns
+  - [Project structure](docs/user_guides/project_structure.md) — organizing Capper types, factories, and type packs
 - [Package plan](docs/capper_package_plan.md) — design and rationale
 - [Roadmap](docs/ROADMAP.md) — development phases and status
 - [Faker provider mapping](docs/FAKER_PROVIDERS.md) — which Faker method each type uses

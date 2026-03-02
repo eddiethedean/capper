@@ -62,6 +62,7 @@ def test_cli_unknown_type_exits_nonzero_and_stderr(capsys: pytest.CaptureFixture
         err = capsys.readouterr().err
         assert "Unknown type" in err
         assert "NonExistentType" in err
+        assert "Known types include" in err or "Did you mean" in err
     finally:
         sys.argv = orig_argv
 

@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–9 done. Current: 0.4.0 (Phase 9 — reliability, performance, coverage).
+**Quick reference:** Phases 1–11 done. Current release: 0.4.1 (Phase 10 — API stability and versioning); Phase 11 changes are on `main` and will ship in 0.5.0.
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–9 complete (Phase 9: benchmarks, CI performance gate, coverage ≥98%, edge-case tests).
+- **Progress:** Phases 1–11 complete (Phase 10: public API definition, deprecation helper, versioning and upgrade guidance; Phase 11: ecosystem docs, guides, and CLI UX polish).
 
-*Recent: Phase 9 — benchmarks and baseline (docs/benchmarks.md), coverage gate (--cov-fail-under=98), performance test (1000 builds &lt;30s), edge-case tests (seeding, use_faker/locale, registration failures).*
+*Recent: Phase 11 — new ecosystem/user guides (FastAPI, Django patterns, dataclasses/attrs, test templates, project structure), improved CLI UX, and updated docs navigation.*
 
 ---
 
@@ -94,21 +94,21 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 10 — API stability and versioning
 
-- [ ] Define the “public API surface” explicitly (what is guaranteed vs. internal) and document it in the API reference.
-- [ ] Tighten or add deprecation warnings for any APIs that may change before 1.0.0.
-- [ ] Document a clear semantic-versioning policy for Capper (what counts as breaking vs. minor vs. patch).
-- [ ] Audit type names, behaviors, and error messages for consistency before declaring them stable.
-- [ ] Add a short “Upgrading between minor versions” section with concrete examples (especially around Faker/Polyfactory upgrades).
+- [x] Define the “public API surface” explicitly (what is guaranteed vs. internal) and document it in the API reference. **Done:** See [API reference](api.md) “Public API surface”.
+- [x] Tighten or add deprecation warnings for any APIs that may change before 1.0.0. **Done:** Added internal helper `capper._deprecations.warn_deprecated(...)` and documented policy in [compatibility](compatibility.md).
+- [x] Document a clear semantic-versioning policy for Capper (what counts as breaking vs. minor vs. patch). **Done:** See [compatibility](compatibility.md#versioning-and-releases).
+- [x] Audit type names, behaviors, and error messages for consistency before declaring them stable. **Done:** Error paths are standardized and covered by tests; see `capper/tests/test_edge_cases.py`, `capper/tests/test_cli.py`, and `capper/tests/test_hypothesis_strategies.py`.
+- [x] Add a short “Upgrading between minor versions” section with concrete examples (especially around Faker/Polyfactory upgrades). **Done:** See [compatibility](compatibility.md#upgrading-between-minor-versions).
 
 ---
 
 ## Phase 11 — Ecosystem, integrations, and UX
 
-- [ ] Add deeper usage guides and examples for common stacks (e.g. FastAPI/Pydantic, Django + Pydantic, dataclasses/attrs-heavy codebases).
-- [ ] Provide small “starter templates” or snippets for typical test setups (pytest fixtures, factory modules, Hypothesis strategies).
-- [ ] Document patterns for organizing large projects that rely heavily on Capper types (naming conventions, module layout).
-- [ ] Polish CLI UX (help text, error messages, discoverability) based on real-world feedback.
-- [ ] Highlight and document third-party “capper type packs” or integrations (if/when they exist) in the docs.
+- [x] Add deeper usage guides and examples for common stacks (e.g. FastAPI/Pydantic, Django + Pydantic, dataclasses/attrs-heavy codebases). **Done:** See `docs/user_guides/fastapi_pydantic.md`, `django_patterns.md`, and `dataclasses_and_attrs.md` (each with runnable examples in `docs/examples/`).
+- [x] Provide small “starter templates” or snippets for typical test setups (pytest fixtures, factory modules, Hypothesis strategies). **Done:** See `docs/user_guides/test_setup_templates.md` and `docs/examples/test_setup_templates.py`.
+- [x] Document patterns for organizing large projects that rely heavily on Capper types (naming conventions, module layout). **Done:** See `docs/user_guides/project_structure.md`.
+- [x] Polish CLI UX (help text, error messages, discoverability) based on real-world feedback. **Done:** Improved help/epilog and unknown-type suggestions in `capper/cli.py`, with tests in `capper/tests/test_cli.py`.
+- [x] Highlight and document third-party “capper type packs” or integrations (if/when they exist) in the docs. **Done:** See “Known type packs and integrations” in `docs/extending.md`.
 
 ---
 
@@ -129,13 +129,14 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
-| 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. **Current.** |
-| 0.5.0  | Phase 10–11: API stability, versioning policy, ecosystem docs, and UX improvements. |
+| 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. |
+| 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. **Current release.** |
+| 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations (Phase 11 work is merged on `main` and will be released as 0.5.0). |
 | 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, and a production-ready, stable release. |
 
 ---
 
-*Last updated: 2026-03-02 (Phase 9 complete).*
+*Last updated: 2026-03-02 (Phase 11 complete; 0.5.0 unreleased).*
 
 ---
 

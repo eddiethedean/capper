@@ -28,6 +28,11 @@ nav:
       - Models and factories: user_guides/models_and_factories.md
       - Reproducible data: user_guides/reproducible_data.md
       - Custom types: user_guides/custom_types.md
+      - FastAPI + Pydantic: user_guides/fastapi_pydantic.md
+      - Django patterns: user_guides/django_patterns.md
+      - Dataclasses and attrs: user_guides/dataclasses_and_attrs.md
+      - Test setup templates: user_guides/test_setup_templates.md
+      - Project structure: user_guides/project_structure.md
   - Example notebooks: notebooks/README.md
   - API Reference: api.md
 

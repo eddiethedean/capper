@@ -22,6 +22,11 @@ Step-by-step guides with runnable examples (run from repo root with Capper insta
 | [user_guides/models_and_factories.md](user_guides/models_and_factories.md) | Pydantic vs dataclasses, batches, mixing Capper and built-in types. |
 | [user_guides/reproducible_data.md](user_guides/reproducible_data.md) | Seeding with `seed()`, `seed_random()`, and `__random_seed__`. |
 | [user_guides/custom_types.md](user_guides/custom_types.md) | Custom `FakerType` subclasses and `faker_kwargs`. |
+| [user_guides/fastapi_pydantic.md](user_guides/fastapi_pydantic.md) | FastAPI-style tests and API payloads with Pydantic models and Capper factories. |
+| [user_guides/django_patterns.md](user_guides/django_patterns.md) | Django-style patterns using Capper-backed schemas and factories alongside Django models/serializers. |
+| [user_guides/dataclasses_and_attrs.md](user_guides/dataclasses_and_attrs.md) | Dataclasses-only and attrs-heavy projects using `DataclassFactory`. |
+| [user_guides/test_setup_templates.md](user_guides/test_setup_templates.md) | pytest and Hypothesis setup templates (seeding, fixtures, base factories). |
+| [user_guides/project_structure.md](user_guides/project_structure.md) | Suggested layout and naming for Capper-heavy projects and type packs. |
 
 Runnable scripts for each guide live in `docs/examples/`.
 

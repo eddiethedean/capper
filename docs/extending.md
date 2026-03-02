@@ -55,3 +55,18 @@ register_type_strategy(ISBN, capper_strategies.for_type(ISBN))
 Then `st.from_type(ISBN)` will work. You can do this in your package’s `__init__.py` so that importing your types automatically registers them with Hypothesis.
 
 No changes to Capper itself are required; this is a documentation-only pattern.
+
+## Known type packs and integrations
+
+Capper is designed to be extended. If you publish a type pack or integration that builds on Capper,
+you can open a pull request to add a short entry here with:
+
+- Package name and link
+- Short description (1–2 sentences)
+- Maintainer or organization (optional)
+
+Examples of integrations that fit well:
+
+- Domain-specific type packs (e.g. finance, healthcare, gaming)
+- Framework integrations (e.g. helper packages for FastAPI or Django test setups)
+
