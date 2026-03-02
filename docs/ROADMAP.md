@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–11 done. Current release: 0.5.0 (Phase 11 — ecosystem docs and UX); 1.0.0 (Phase 12) will finalize support policy and long-term maintenance.
+**Quick reference:** Phases 1–12 done. Current release: 1.0.0 (Phase 12 — production-ready, governance, and long-term maintenance).
 
 ---
 
@@ -10,9 +10,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 - **Core:** Package layout, `FakerType` base, 33 semantic types (person, geo, internet, commerce, date/time, text, phone, finance, file, misc, color, barcode), tests, and examples.
 - **Optional Pydantic:** Works without Pydantic (dataclasses, attrs, etc.); Pydantic schema support when `capper[pydantic]` is installed.
-- **Progress:** Phases 1–11 complete (Phase 10: public API definition, deprecation helper, versioning and upgrade guidance; Phase 11: ecosystem docs, guides, and CLI UX polish).
+- **Progress:** Phases 1–12 complete (Phase 10: public API definition, deprecation helper, versioning and upgrade guidance; Phase 11: ecosystem docs, guides, and CLI UX polish; Phase 12: 1.0.0, governance, security, and long-term maintenance).
 
-*Recent: Phase 11 — new ecosystem/user guides (FastAPI, Django patterns, dataclasses/attrs, test templates, project structure), improved CLI UX, and updated docs navigation.*
+*Recent: Phase 12 — 1.0.0 production-ready release, governance and maintenance docs, security policy and checks, and scheduled compatibility monitoring.*
 
 ---
 
@@ -114,7 +114,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ## Phase 12 — Production-ready 1.0 and long-term maintenance
 
-- [ ] Cut a 1.0.0 release once Phase 9–11 items are complete and the API surface is stable.
+- [x] Cut a 1.0.0 release once Phase 9–11 items are complete and the API surface is stable. **Done:** 1.0.0 released as the first production-ready, stable Capper API.
 - [x] Establish a support and maintenance policy (e.g. supported Python and dependency versions, backport scope). **Done:** See `docs/compatibility.md` (supported versions and backport policy) and README “Support & maintenance”.
 - [x] Add or refine project governance docs (issue and PR templates, code of conduct, release checklist). **Done:** See `.github/ISSUE_TEMPLATE/*`, `.github/pull_request_template.md`, `CODE_OF_CONDUCT.md`, `docs/release_checklist.md`, and `MAINTAINERS.md`.
 - [x] Monitor and respond to bug reports around Faker and Polyfactory upstream changes; document any needed workarounds. **Done:** Added scheduled “latest deps” workflow (`.github/workflows/compat-latest.yml`) and documented handling in `docs/compatibility.md`.
@@ -131,12 +131,12 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
 | 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. |
 | 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. |
-| 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations. **Current release.** |
-| 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, and a production-ready, stable release. |
+| 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations. |
+| 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, security, and a production-ready, stable release. **Current release.** |
 
 ---
 
-*Last updated: 2026-03-02 (Phase 11 complete; 0.5.0 released).*
+*Last updated: 2026-03-02 (Phase 12 complete; 1.0.0 released).*
 
 ---
 

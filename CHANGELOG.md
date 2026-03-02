@@ -9,6 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes yet._
 
+## [1.0.0] - 2026-03-02
+
+### Added
+
+- **Production-ready release:** Capper 1.0.0 promotes the existing 0.5.x feature set (Phases 9–11) to a stable, production-ready API.
+- **Support and maintenance policy:** Documented supported Python and dependency versions, backport expectations, and maintenance guidelines in `docs/compatibility.md`, surfaced from the README.
+- **Governance and process:** Added issue and PR templates, `CODE_OF_CONDUCT.md`, `MAINTAINERS.md`, `docs/release_checklist.md`, and `docs/maintenance_review.md` to guide contributions, releases, and periodic hygiene reviews.
+- **Security and compatibility monitoring:** Introduced a `pip-audit` step in CI and a scheduled `compat-latest` workflow to test against the latest Faker and Polyfactory versions; documented reporting and handling in `SECURITY.md`.
+
 ## [0.5.0] - 2026-03-02
 
 ### Added
@@ -60,7 +69,8 @@ _No unreleased changes yet._
 - Optional Pydantic support; multi-backend (Pydantic, dataclasses, attrs).
 - Unit tests and usage examples.
 
-[Unreleased]: https://github.com/eddiethedean/capper/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/eddiethedean/capper/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/eddiethedean/capper/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/eddiethedean/capper/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/eddiethedean/capper/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/eddiethedean/capper/compare/v0.3.0...v0.4.0

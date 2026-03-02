@@ -145,11 +145,11 @@ Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. 
 - A separate compatibility workflow (`compat-latest.yml`) runs tests against the latest Faker and Polyfactory versions.
 - For details on supported versions and how to report security issues, see [SECURITY.md](SECURITY.md).
 
-## What's new in 0.4.0
+## What's new in 1.0.0
 
-- **Thread safety:** Capper is now thread-safe via a per-thread Faker proxy; `seed()` and `use_faker()` only affect the current thread.
-- **Reliability and coverage:** Phase 9 adds a coverage gate (≥ 98% for `capper/`), targeted edge-case tests, and a lightweight performance check in CI.
-- **Tooling and docs:** CI runs Ruff, mypy, tests (with coverage gate), and a strict MkDocs build on all supported Python versions; docs and roadmap have been updated to reflect Phase 9.
+- **Production-ready, stable API:** Capper 1.0.0 promotes the 0.5.x feature set (Phases 9–11) to a stable, production-ready API with documented compatibility and versioning guarantees.
+- **Governance and maintenance:** Added governance and maintenance documentation (issue/PR templates, code of conduct, maintainer expectations, release and maintenance review checklists) to support long-term evolution.
+- **Security and compatibility:** CI now includes `pip-audit` and a scheduled latest-deps workflow; the security policy and compatibility docs describe how issues are reported, triaged, and backported.
 
 ## Development
 

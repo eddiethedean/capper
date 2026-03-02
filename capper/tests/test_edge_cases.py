@@ -16,7 +16,7 @@ def test_version_fallback_when_metadata_missing() -> None:
             del sys.modules["capper"]
         import capper as capper_mod
 
-        assert capper_mod.__version__ == "0.5.0"
+        assert capper_mod.__version__ == "1.0.0"
     # Reimport so later tests see the real version
     if "capper" in sys.modules:
         del sys.modules["capper"]
