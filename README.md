@@ -2,13 +2,22 @@
 
 [![PyPI](https://img.shields.io/pypi/v/capper.svg)](https://pypi.org/project/capper/)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://pypi.org/project/capper/)
-[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI)](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/eddiethedean/capper/ci.yml?branch=main&label=CI%20(lint%2C%20types%2C%20tests%2C%20docs))](https://github.com/eddiethedean/capper/actions/workflows/ci.yml)
 [![Ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://docs.astral.sh/ruff/)
 [![mypy](https://img.shields.io/badge/mypy-checked-blue.svg)](https://mypy-lang.org/)
 
 Semantic, typed wrappers for [Faker](https://faker.readthedocs.io/) with automatic [Polyfactory](https://polyfactory.litestar.dev/) integration.
 
 **Source:** [github.com/eddiethedean/capper](https://github.com/eddiethedean/capper)
+
+## CI pipeline
+
+The `ci.yml` workflow runs on pushes and PRs to `main` and includes:
+
+- **Linting:** `ruff check .` and `ruff format --check .`
+- **Type checking:** `mypy capper`
+- **Tests:** `pytest -n auto capper/tests -v -m "not benchmark" --cov=capper --cov-report=term-missing --cov-fail-under=98`
+- **Docs:** `mkdocs build --strict`
 
 ## Why Capper?
 
