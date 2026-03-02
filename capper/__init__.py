@@ -11,13 +11,14 @@ try:
 
     __version__ = _version("capper")
 except Exception:  # Package not installed (e.g. dev tree) or metadata missing
-    __version__ = "1.0.0"
+    __version__ = "1.1.0"
 
 from .barcode import EAN8, EAN13
 from .base import FakerType, faker, seed, use_faker
 from .color import HexColor
 from .commerce import Company, Currency, Price, Product
 from .date_time import Date, DateTime, Time
+from .fields import faker_field
 from .file import FileExtension, FileName, FilePath
 from .finance import CreditCardExpiry, CreditCardNumber, CreditCardProvider
 from .geo import Address, City, Country
@@ -43,6 +44,7 @@ __all__ = [
     "EAN8",
     "Email",
     "FakerType",
+    "faker_field",
     "FileExtension",
     "FileName",
     "FilePath",

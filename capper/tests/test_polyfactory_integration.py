@@ -6,7 +6,7 @@ from polyfactory.factories import DataclassFactory
 from polyfactory.factories.pydantic_factory import ModelFactory
 from pydantic import BaseModel
 
-from capper import Email, Name
+from capper import Email, Name, Sentence, faker_field
 
 
 class User(BaseModel):
@@ -92,6 +92,25 @@ def test_dataclass_factory_batch() -> None:
         assert isinstance(person, Person)
         assert len(person.name) > 0
         assert "@" in person.email
+
+
+def test_faker_field_override_with_provider_kwargs() -> None:
+    """Polyfactory-style field override: faker_field(Sentence, nb_words=n) uses provider kwargs."""
+
+    class Post(BaseModel):
+        summary: Sentence
+        body: Sentence
+
+    class PostFactory(ModelFactory[Post]):
+        summary = faker_field(Sentence, nb_words=5)
+        body = faker_field(Sentence, nb_words=12)
+
+    post = PostFactory.build()
+    assert isinstance(post.summary, Sentence)
+    assert isinstance(post.body, Sentence)
+    # Faker's sentence(nb_words) is approximate; just ensure values are non-empty sentences
+    assert len(post.summary) > 0 and len(post.summary.split()) >= 1
+    assert len(post.body) > 0 and len(post.body.split()) >= 1
 
 
 def test_capper_types_auto_registered_with_polyfactory() -> None:

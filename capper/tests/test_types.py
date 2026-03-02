@@ -148,6 +148,30 @@ def test_faker_kwargs_support() -> None:
     assert isinstance(instance.text, (str, ShortSentence)) and len(instance.text) > 0
 
 
+def test_faker_field_returns_callable_with_provider_kwargs() -> None:
+    """faker_field(Type, **kwargs) returns a callable that generates Type with those kwargs."""
+    from capper import Sentence, faker_field
+
+    gen = faker_field(Sentence, nb_words=5)
+    value = gen()
+    assert isinstance(value, Sentence)
+    # Faker's sentence(nb_words=5) is approximate; expect a short sentence
+    words = value.split()
+    assert len(words) >= 1 and len(words) <= 10
+
+
+def test_faker_field_raises_for_type_without_provider() -> None:
+    """faker_field raises AttributeError for a class with no faker_provider."""
+    from capper.base import FakerType
+    from capper.fields import faker_field
+
+    class NotAProvider(FakerType):
+        faker_provider = ""
+
+    with pytest.raises(AttributeError, match="has no faker_provider"):
+        faker_field(NotAProvider)
+
+
 def test_hex_color_format() -> None:
     """HexColor yields a string starting with #."""
     from faker import Faker

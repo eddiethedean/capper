@@ -235,7 +235,7 @@ Requires **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. Option
 Import from the top level: `from capper import Name, Email, Address, ...`.  
 See the **[Faker provider mapping](docs/FAKER_PROVIDERS.md)** (or the hosted docs) for the full list of types and which Faker provider each uses.
 
-**Optional kwargs:** Subclass `FakerType` and set `faker_kwargs` to pass arguments to the Faker provider (e.g. `faker_kwargs = {"nb_words": 10}` for `Sentence`).
+**Optional kwargs:** Subclass `FakerType` and set `faker_kwargs` to pass arguments to the Faker provider (e.g. `faker_kwargs = {"nb_words": 10}` for `Sentence`). For per-field overrides on the factory, use **`faker_field(Sentence, nb_words=5)`** (Polyfactory-style; see [Custom types](docs/user_guides/custom_types.md)).
 
 **Custom types:** Subclass `FakerType`, set `faker_provider` to the Faker method name (e.g. `"company"`), and optionally `faker_kwargs`. The type auto-registers with Polyfactory when the class is defined.
 
@@ -303,7 +303,7 @@ To build and upload manually: `pip install build twine`, `python -m build`, `twi
   - [Getting started](docs/user_guides/getting_started.md) — install, first model, first factory
   - [Models and factories](docs/user_guides/models_and_factories.md) — Pydantic, dataclasses, batches
   - [Reproducible data](docs/user_guides/reproducible_data.md) — seeding for tests and demos
-  - [Custom types](docs/user_guides/custom_types.md) — `FakerType` subclasses and `faker_kwargs`
+  - [Custom types](docs/user_guides/custom_types.md) — `FakerType` subclasses, `faker_kwargs`, and `faker_field`
   - [FastAPI + Pydantic](docs/user_guides/fastapi_pydantic.md) — API payloads and tests using Capper-backed Pydantic models
   - [Django patterns](docs/user_guides/django_patterns.md) — Django-style schemas, factories, and service tests
   - [Dataclasses and attrs](docs/user_guides/dataclasses_and_attrs.md) — non-Pydantic projects with `DataclassFactory`

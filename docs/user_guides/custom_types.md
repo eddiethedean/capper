@@ -2,6 +2,36 @@
 
 You can add your own Faker-backed types by subclassing **`FakerType`** and setting **`faker_provider`** (and optionally **`faker_kwargs`**). They auto-register with Polyfactory when the class is defined.
 
+You can also pass provider arguments **per field** on the factory using **`faker_field`**, in the same way [Polyfactory](https://polyfactory.litestar.dev/) uses callables and `Use(...)` for field overrides.
+
+## Field overrides with `faker_field` (Polyfactory-style)
+
+To pass Faker provider kwargs at the **factory** level (one field at a time), use **`faker_field(Type, **kwargs)`**. Assign it to the factory attribute; Polyfactory will invoke the returned callable at build time.
+
+```python
+from pydantic import BaseModel
+from polyfactory.factories.pydantic_factory import ModelFactory
+from capper import Sentence, faker_field
+
+
+class Post(BaseModel):
+    summary: Sentence
+    body: Sentence
+
+
+class PostFactory(ModelFactory[Post]):
+    summary = faker_field(Sentence, nb_words=5)
+    body = faker_field(Sentence, nb_words=20)
+
+
+if __name__ == "__main__":
+    post = PostFactory.build()
+    print("Summary (5 words):", post.summary)
+    print("Body (20 words):", post.body)
+```
+
+This matches Polyfactory’s pattern of setting a field to a callable (or `Use(callable, ...)`) that is invoked when building the model. No new type classes are required.
+
 ## Using `faker_kwargs`
 
 Existing Capper types use a fixed Faker method. To pass options (e.g. word count, format), subclass and set **`faker_kwargs`**:

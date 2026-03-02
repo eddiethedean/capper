@@ -9,6 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes yet._
 
+## [1.1.0] - 2026-03-02
+
+### Added
+
+- **Polyfactory-style field helper:** Added `capper.fields.faker_field` and exported `faker_field` from the top-level package. The helper merges class-level `faker_kwargs` with per-field overrides and uses the shared per-thread Faker instance.
+- **Docs and tests for faker_field:** Updated the custom types guide, API docs, and README to document `faker_field`, and added targeted tests for kwargs merging, seeding, and Polyfactory integration.
+
 ## [1.0.0] - 2026-03-02
 
 ### Added
@@ -69,7 +76,8 @@ _No unreleased changes yet._
 - Optional Pydantic support; multi-backend (Pydantic, dataclasses, attrs).
 - Unit tests and usage examples.
 
-[Unreleased]: https://github.com/eddiethedean/capper/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/eddiethedean/capper/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/eddiethedean/capper/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/eddiethedean/capper/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/eddiethedean/capper/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/eddiethedean/capper/compare/v0.4.0...v0.4.1
