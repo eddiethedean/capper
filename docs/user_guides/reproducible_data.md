@@ -136,4 +136,17 @@ From the repo root (with Capper installed):
 python docs/examples/reproducible_data.py
 ```
 
+Example output (values will vary, seeds control reproducibility):
+
+```text
+--- seed(42) twice => same user ---
+Reproducible: Allison Hill donaldgarcia@example.net
+
+--- seed() vs seed_random() => same name ---
+Same name: Allison Hill
+
+--- __random_seed__ on factory ---
+Angie Henderson Daniel Wagner
+```
+
 See [Getting started](getting_started.md) for install and [Custom types](custom_types.md) for extending Capper.

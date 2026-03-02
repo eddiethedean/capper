@@ -105,4 +105,17 @@ From the repo root (with Capper installed):
 python docs/examples/custom_types.py
 ```
 
+Example output (values will vary):
+
+```text
+--- ShortSentence (faker_kwargs) ---
+Summary (5 words): Table and house.
+
+--- CompanyName + ShortSentence ---
+Hicks-Nash — Risk somebody finally someone.
+
+--- USDate (provider + kwargs) ---
+BdeWHGKTkyEnrYblLocN 10/29/1983
+```
+
 For the list of Faker providers and their arguments, see [Faker’s documentation](https://faker.readthedocs.io/) and [FAKER_PROVIDERS.md](../FAKER_PROVIDERS.md).

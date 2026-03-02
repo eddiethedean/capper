@@ -86,6 +86,18 @@ python docs/examples/test_setup_templates.py
 
 The example script mirrors these patterns without depending on pytest or Hypothesis.
 
+Example output (values will vary):
+
+```text
+--- Using factory-level seed ---
+{'name': 'Angela Brennan', 'email': 'zwebb@example.net'}
+{'name': 'Robert Bruce', 'email': 'brewermary@example.org'}
+
+--- Overriding with global seed() ---
+{'name': 'Allison Hill', 'email': 'donaldgarcia@example.net'}
+{'name': 'Allison Hill', 'email': 'donaldgarcia@example.net'}
+```
+
 See also:
 
 - [Reproducible data](reproducible_data.md)

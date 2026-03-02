@@ -53,6 +53,13 @@ Run this (from the repo root, with Capper installed):
 python docs/examples/getting_started.py
 ```
 
+Example output (values will vary):
+
+```text
+Name: Lisa Roberts
+Email: fwilliams@example.com
+```
+
 You’ll see different name/email each run. Capper types are subclasses of `str`, so you can use them anywhere you’d use a string.
 
 ## What just happened?

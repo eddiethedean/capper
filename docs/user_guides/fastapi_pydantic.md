@@ -72,7 +72,21 @@ From the repo root (with Capper installed):
 python docs/examples/fastapi_pydantic.py
 ```
 
-The example script prints sample `UserCreate` payloads without requiring FastAPI itself. See also:
+The example script prints sample `UserCreate` payloads without requiring FastAPI itself.
+
+Example output (values will vary):
+
+```text
+--- Single payload ---
+{'name': 'Allison Hill', 'email': 'donaldgarcia@example.net'}
+
+--- Batch of 3 ---
+{'name': 'Angie Henderson', 'email': 'davisjesse@example.net'}
+{'name': 'Cristian Santos', 'email': 'lrobinson@example.com'}
+{'name': 'Abigail Shaffer', 'email': 'jpeterson@example.org'}
+```
+
+See also:
 
 - [Getting started](getting_started.md)
 - [Models and factories](models_and_factories.md)

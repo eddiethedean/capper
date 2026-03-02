@@ -92,4 +92,21 @@ From the repo root (with Capper installed):
 python docs/examples/models_and_factories.py
 ```
 
+Example output (values will vary):
+
+```text
+--- Contact (Pydantic) ---
+{'name': 'Angela Jordan', 'email': 'erinparsons@example.net', 'address': '3182 James Village\nAlexanderburgh, AS 43422', 'phone': '290-640-4906x1525'}
+Andrea Cook — blancharddebra@example.net
+Nicholas Morales — david92@example.com
+
+--- Person (dataclass) ---
+John Walls scottdavidson@example.net
+Person(name='Amy Mitchell', email='williamssherri@example.net')
+Person(name='John Farmer', email='darren18@example.org')
+
+--- Listing (Capper + int) ---
+Henderson-Berry: Triple-buffered needs-based moderator @ $2,687.41 x 2613
+```
+
 See [Getting started](getting_started.md) for install and [FAKER_PROVIDERS.md](../FAKER_PROVIDERS.md) for the full list of Capper types and their Faker providers.

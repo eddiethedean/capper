@@ -71,6 +71,13 @@ From the repo root (with Capper installed):
 python docs/examples/dataclasses_and_attrs.py
 ```
 
+Example output (values will vary):
+
+```text
+--- Person (dataclass) ---
+Person(name='Chris Curtis', email='nicholsonclinton@example.net')
+```
+
 The example script demonstrates both dataclasses and attrs usage. See also:
 
 - [Getting started](getting_started.md)

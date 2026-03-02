@@ -64,7 +64,19 @@ From the repo root (with Capper installed):
 python docs/examples/django_patterns.py
 ```
 
-The example script mirrors the schema/factory patterns without importing Django itself. For real projects, drop the same schemas and factories into your `tests/` directory.
+The example script mirrors the schema/factory patterns without importing Django itself.
+
+Example output (values will vary):
+
+```text
+UserSchema: {'name': 'Brandon Russell', 'email': 'robersonnancy@example.com'}
+
+--- Batch ---
+{'name': 'Evelyn Christian', 'email': 'derekhoffman@example.net'}
+{'name': 'Aaron Graham', 'email': 'johnsnicholas@example.org'}
+```
+
+For real projects, drop the same schemas and factories into your `tests/` directory.
 
 See also:
 
