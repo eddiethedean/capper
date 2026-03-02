@@ -7,9 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+_No unreleased changes yet._
+
+## [0.4.0] - 2026-03-02
+
 ### Added
 
 - **Thread-safe per-thread Faker:** Each thread now has its own Faker instance. The module-level `faker` is a proxy that forwards to the current thread's Faker; `seed(n)` and `use_faker(instance)` only affect the current thread. No API changes; safe for concurrent use from multiple threads. See [compatibility](docs/compatibility.md#thread-safety).
+- **Reliability and coverage gate (Phase 9):** Required coverage ≥ 98% for the `capper/` package, enforced in CI with `--cov-report=term-missing` and `--cov-fail-under=98`; added targeted edge-case tests for seeding, `use_faker()`, locales, and Hypothesis registration failures.
+- **Benchmarks and performance checks:** Added `capper/tests/benchmark_core.py` with pytest-benchmark and documented baseline timings in `docs/benchmarks.md`; added a lightweight performance test (1000× `UserFactory.build()` under a generous threshold) that runs in CI.
+- **CI and docs improvements:** CI now runs Ruff, mypy, tests (with coverage gate) and a strict MkDocs build on all supported Python versions; docs were updated to reflect Phase 9 completion and to fix strict MkDocs warnings.
 
 ## [0.3.0] - 2026-02-24
 
@@ -39,7 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Optional Pydantic support; multi-backend (Pydantic, dataclasses, attrs).
 - Unit tests and usage examples.
 
-[Unreleased]: https://github.com/eddiethedean/capper/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/eddiethedean/capper/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/eddiethedean/capper/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/eddiethedean/capper/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/eddiethedean/capper/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/eddiethedean/capper/releases/tag/v0.1.0

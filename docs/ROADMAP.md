@@ -2,7 +2,7 @@
 
 High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
-**Quick reference:** Phases 1–9 done. Current: 0.3.0 (Phase 9 — reliability, performance, coverage).
+**Quick reference:** Phases 1–9 done. Current: 0.4.0 (Phase 9 — reliability, performance, coverage).
 
 ---
 
@@ -128,10 +128,10 @@ High-level development phases and current status. See [capper_package_plan.md](c
 |--------|--------|
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
-| 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). **Current.** |
-| 0.4.0  | Ship remaining Phase 6/7 content (33 types, `use_faker()`, CONTRIBUTING, API reference, CHANGELOG, etc.); tighten CI and docs around them. |
-| 0.5.0  | Phase 9 focus: reliability, performance baselines, stricter coverage and CI gating. |
-| 1.0.0  | Phases 10–12: explicit public API, versioning policy, ecosystem docs, and a production-ready, stable release. |
+| 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). |
+| 0.4.0  | Phase 9: reliability, performance baselines, stricter coverage and CI gating. **Current.** |
+| 0.5.0  | Phase 10–11: API stability, versioning policy, ecosystem docs, and UX improvements. |
+| 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, and a production-ready, stable release. |
 
 ---
 
