@@ -8,7 +8,7 @@ Documentation for the [Capper](https://github.com/eddiethedean/capper) package â
 | [capper_package_plan.md](capper_package_plan.md) | Design, layout, registration, and development plan. |
 | [ROADMAP.md](ROADMAP.md) | Phases, current status, and release milestones. |
 | [FAKER_PROVIDERS.md](FAKER_PROVIDERS.md) | Mapping of each capper type to its Faker provider. |
-| [compatibility.md](compatibility.md) | Version support, upgrade guidance, and deprecation policy. |
+| [compatibility.md](compatibility.md) | Version support, upgrade guidance, deprecation policy, and versioning. |
 | [extending.md](extending.md) | Third-party type packs: shipping your own FakerType bundles. |
 | [notebooks/README.md](notebooks/README.md) | Example Jupyter notebooks. |
 

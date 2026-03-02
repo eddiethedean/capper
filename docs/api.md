@@ -2,6 +2,20 @@
 
 Programmatic API for Capper: the main package, the shared Faker instance, and the base type.
 
+## Public API surface
+
+Capper’s public API (stable pre-1.0) consists of:
+
+- **Modules**
+  - `capper` — semantic types, Faker proxy, and helpers.
+  - `capper.strategies` — Hypothesis integration (`for_type` and `st.from_type(...)` once imported).
+- **Objects**
+  - Semantic types imported from `capper` (e.g. `Name`, `Email`, `Address`, `Price`, `UUID`, `EAN13`).
+  - `FakerType`, `faker`, `seed`, `use_faker` from `capper`.
+  - `for_type` from `capper.strategies`.
+
+Internal helpers and modules not listed here may change between releases.
+
 ## Package: capper
 
 Top-level exports: semantic types (`Name`, `Email`, etc.), `FakerType`, `faker`, `seed`, and `use_faker`. Import with `from capper import Name, Email, seed`.
@@ -10,7 +24,7 @@ Top-level exports: semantic types (`Name`, `Email`, etc.), `FakerType`, `faker`,
 
 ## Base: FakerType, faker, seed, use_faker
 
-The base class and shared Faker instance. Use `seed(n)` for reproducibility; use `use_faker(instance)` to switch to a custom Faker (e.g. locale-specific).
+The base class and shared per-thread Faker instance. Use `seed(n)` for reproducibility; use `use_faker(instance)` to switch to a custom Faker (e.g. locale-specific) for the current thread.
 
 ::: capper.base.FakerType
 ::: capper.base.faker

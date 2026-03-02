@@ -132,7 +132,7 @@ Use `-n`/`--count` for the number of rows and `-s`/`--seed` for reproducible out
 
 ## Compatibility
 
-Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For version ranges, upgrade guidance, and the deprecation policy, see [Compatibility](docs/compatibility.md).
+Capper targets **Python 3.10+**, **Faker >= 20.0**, and **Polyfactory >= 2.0**. For version ranges, upgrade guidance, the versioning policy, and the deprecation policy, see [Compatibility](docs/compatibility.md).
 
 ## What's new in 0.4.0
 
@@ -180,7 +180,7 @@ Releases are built and published to PyPI via [GitHub Actions](https://github.com
 
 1. Update [CHANGELOG.md](CHANGELOG.md): move Unreleased entries into a new version section and date it.
 2. Add a `PYPI_API_TOKEN` secret (PyPI API token) to the repo.
-3. Create a GitHub release (tag e.g. `v0.4.0`). The workflow runs tests, builds the package, and uploads to PyPI.
+3. Create a GitHub release (tag e.g. `v0.4.1`). The workflow runs tests, builds the package, and uploads to PyPI.
 
 To build and upload manually: `pip install build twine`, `python -m build`, `twine upload dist/*`.
 

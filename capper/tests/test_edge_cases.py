@@ -10,13 +10,13 @@ from capper.base import FakerType
 
 
 def test_version_fallback_when_metadata_missing() -> None:
-    """When importlib.metadata.version raises, __version__ falls back to 0.4.0."""
+    """When importlib.metadata.version raises, __version__ falls back to 0.4.1."""
     with patch("importlib.metadata.version", side_effect=Exception("no metadata")):
         if "capper" in sys.modules:
             del sys.modules["capper"]
         import capper as capper_mod
 
-        assert capper_mod.__version__ == "0.4.0"
+        assert capper_mod.__version__ == "0.4.1"
     # Reimport so later tests see the real version
     if "capper" in sys.modules:
         del sys.modules["capper"]

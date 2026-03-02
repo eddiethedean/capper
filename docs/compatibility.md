@@ -32,7 +32,38 @@ Capper uses `BaseFactory.__faker__` and `BaseFactory.add_provider()`. If Polyfac
 ## Deprecation policy
 
 - **Advance notice:** Deprecated features or breaking changes are announced at least **one minor release** in advance (e.g. deprecation in 0.6.0, removal in 0.7.0).
-- **Documentation:** Deprecations are listed in [CHANGELOG.md](https://github.com/eddiethedean/capper/blob/main/CHANGELOG.md) under "Deprecated" and in release notes. Where practical, code uses `warnings.warn(..., DeprecationWarning)`.
+- **Documentation:** Deprecations are listed in [CHANGELOG.md](https://github.com/eddiethedean/capper/blob/main/CHANGELOG.md) under \"Deprecated\" and in release notes. Where practical, code uses the internal helper `capper._deprecations.warn_deprecated(...)` to emit `DeprecationWarning`.
 - **Removal:** After the deprecation period, a following minor or major release may remove or change the behavior.
+
+Example:
+
+```python
+from capper._deprecations import warn_deprecated
+
+
+def old_api() -> None:
+    warn_deprecated(
+        \"capper.old_api\",
+        removal_version=\"0.6.0\",
+        alternative=\"capper.new_api\",
+    )
+    ...
+```
+
+## Versioning and releases
+
+Capper follows [Semantic Versioning](https://semver.org/) and uses the following guidelines:
+
+- **Major (1.y.z)** — Breaking changes to the documented public API surface (e.g. removing types or functions from `capper`, changing behavior or error types in incompatible ways).
+- **Minor (0.x.0 / 1.x.0)** — Backwards-compatible feature work: new semantic types, new CLI options, additional docs, performance improvements, and new integrations.
+- **Patch (x.y.z)** — Backwards-compatible bug fixes, small behavior corrections that do not break documented contracts, and docs-only changes.
+
+### Upgrading between minor versions
+
+When upgrading between minor versions (e.g. from 0.4 to 0.5):
+
+- Check the [CHANGELOG.md](https://github.com/eddiethedean/capper/blob/main/CHANGELOG.md) for any **Deprecated** items and their suggested replacements.
+- Look for notes about **tightened validation** or **clearer error messages**; if your tests assert on exact strings, you may need to update expected messages while keeping the behavior the same.
+- If an API you depend on is marked as deprecated, migrate to the recommended alternative before the documented removal version (e.g. switch from `capper.old_api` to `capper.new_api` in the example above).
 
 See [CONTRIBUTING.md](https://github.com/eddiethedean/capper/blob/main/CONTRIBUTING.md) for release steps.
