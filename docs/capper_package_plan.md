@@ -1,6 +1,6 @@
 # Capper: Polyfactory-First Semantic Faker Package
 
-Design and rationale for the **capper** package. For install and usage see the main [README](../README.md); for status and phases see the [Roadmap](ROADMAP.md).
+Design and rationale for the **capper** package. For install and usage see the main [README](README.md); for status and phases see the [Roadmap](ROADMAP.md).
 
 ## Package Name
 
@@ -170,5 +170,5 @@ This approach makes Capper a **plug-and-play semantic Faker layer for Polyfactor
 
 ---
 
-*See also: [README](../README.md) · [Roadmap](ROADMAP.md) · [Faker providers](FAKER_PROVIDERS.md)*
+*See also: [README](README.md) · [Roadmap](ROADMAP.md) · [Faker providers](FAKER_PROVIDERS.md)*
 

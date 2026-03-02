@@ -4,7 +4,7 @@ Documentation for the [Capper](https://github.com/eddiethedean/capper) package �
 
 | Document | Description |
 |----------|-------------|
-| [../README.md](../README.md) | Install, usage, examples, and publishing. Start here. |
+| [README.md](README.md) | Install, usage, examples, and publishing. Start here. |
 | [capper_package_plan.md](capper_package_plan.md) | Design, layout, registration, and development plan. |
 | [ROADMAP.md](ROADMAP.md) | Phases, current status, and release milestones. |
 | [FAKER_PROVIDERS.md](FAKER_PROVIDERS.md) | Mapping of each capper type to its Faker provider. |
@@ -23,7 +23,7 @@ Step-by-step guides with runnable examples (run from repo root with Capper insta
 | [user_guides/reproducible_data.md](user_guides/reproducible_data.md) | Seeding with `seed()`, `seed_random()`, and `__random_seed__`. |
 | [user_guides/custom_types.md](user_guides/custom_types.md) | Custom `FakerType` subclasses and `faker_kwargs`. |
 
-Runnable scripts for each guide live in [docs/examples/](examples/).
+Runnable scripts for each guide live in `docs/examples/`.
 
 ## Example notebooks
 
@@ -47,7 +47,7 @@ For the full list of Capper types and the Faker provider used by each, see
 
 **Quick links**
 
-- **Using capper:** See the main [README](../README.md) for install and examples (Pydantic, dataclass, seed, kwargs).
+- **Using capper:** See the main [README](README.md) for install and examples (Pydantic, dataclass, seed, kwargs).
 - **User guides:** [getting_started](user_guides/getting_started.md) → [models and factories](user_guides/models_and_factories.md) → [reproducible data](user_guides/reproducible_data.md) → [custom types](user_guides/custom_types.md).
 - **How it works:** [Package plan](capper_package_plan.md) — `FakerType`, auto-registration, optional Pydantic.
 - **What’s next:** [Roadmap](ROADMAP.md) — phases and versions.

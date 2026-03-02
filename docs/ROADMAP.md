@@ -1,6 +1,6 @@
 # Capper roadmap
 
-High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](../README.md) for usage. Phases are ordered; checkboxes show done vs planned.
+High-level development phases and current status. See [capper_package_plan.md](capper_package_plan.md) for design and [README](README.md) for usage. Phases are ordered; checkboxes show done vs planned.
 
 **Quick reference:** Phases 1–9 done. Current: 0.3.0 (Phase 9 — reliability, performance, coverage).
 
@@ -87,7 +87,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 - [x] Benchmark core flows (Pydantic models, dataclasses, Hypothesis strategies, CLI) and publish baseline numbers. **Done:** `pytest capper/tests/benchmark_core.py --benchmark-only`, baseline in [benchmarks.md](benchmarks.md).
 - [x] Add lightweight performance regression checks in CI (e.g. “no >X% slowdown” for key benchmarks or representative tests). **Done:** 1000× `UserFactory.build()` must complete in &lt;30s (Option B timing test).
 - [x] Raise and hold coverage targets (e.g. ≥ 98–99% for `capper/`) and keep `--cov-report=term-missing` as a release gate. **Done:** CI runs with `--cov-fail-under=98`; library coverage ≥98%.
-- [x] Add targeted tests for edge cases around seeding, `use_faker()`, locales, and Hypothesis registration failures. **Done:** [test_edge_cases.py](../capper/tests/test_edge_cases.py) (version fallback, use_faker(None) in fresh thread, invalid/non-callable provider, strategies errors, locale de_DE).
+- [x] Add targeted tests for edge cases around seeding, `use_faker()`, locales, and Hypothesis registration failures. **Done:** `capper/tests/test_edge_cases.py` (version fallback, use_faker(None) in fresh thread, invalid/non-callable provider, strategies errors, locale de_DE).
 - [x] Document known limitations and recommended patterns for multi-threaded use. **Done:** Capper is now thread-safe (per-thread Faker via proxy); see [compatibility](compatibility.md#thread-safety) and [reproducible data](user_guides/reproducible_data.md).
 
 ---
@@ -139,4 +139,4 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
-*See also: [Package plan](capper_package_plan.md) · [README](../README.md) · [Faker providers](FAKER_PROVIDERS.md)*
+*See also: [Package plan](capper_package_plan.md) · [README](README.md) · [Faker providers](FAKER_PROVIDERS.md)*

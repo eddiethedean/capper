@@ -19,6 +19,7 @@ nav:
   - Home: README.md
   - Package plan: capper_package_plan.md
   - Roadmap: ROADMAP.md
+  - Benchmarks: benchmarks.md
   - Faker providers: FAKER_PROVIDERS.md
   - Compatibility: compatibility.md
   - Extending Capper: extending.md
