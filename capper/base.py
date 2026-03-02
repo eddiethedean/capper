@@ -1,53 +1,73 @@
-"""FakerType base class and shared Faker instance with automatic Polyfactory registration.
+"""FakerType base class and per-thread Faker proxy with automatic Polyfactory registration.
 
-The module-level ``faker`` is attached to Polyfactory's BaseFactory so that one seed
-controls both capper types and built-in types. Use ``seed(n)`` for reproducible data.
-
-Note: The shared ``faker`` and ``use_faker()`` are not thread-safe; do not switch
-the global Faker from multiple threads while building models.
+The module-level ``faker`` is a proxy to a per-thread Faker instance. Each thread has its own
+Faker; ``seed(n)`` and ``use_faker(instance)`` only affect the current thread. Polyfactory's
+BaseFactory.__faker__ is set to the same proxy, so one seed per thread controls both capper
+types and built-in types. Thread-safe for concurrent use from multiple threads.
 """
 
-from typing import Any
+import threading
+from typing import Any, cast
 
 from faker import Faker
 from polyfactory.factories.base import BaseFactory
 
-
-def _set_faker_instance(instance: Faker) -> None:
-    """Set the shared Faker instance for Capper and Polyfactory."""
-    global faker
-    faker = instance
-    BaseFactory.__faker__ = instance
+_faker_local = threading.local()
 
 
-# Module-level shared Faker; used by Capper types and Polyfactory factories.
-faker: Faker
-_set_faker_instance(Faker())
+def _get_faker() -> Faker:
+    """Return the current thread's Faker instance, creating one if needed."""
+    try:
+        instance = _faker_local.current
+    except AttributeError:
+        instance = None
+    if instance is None:
+        instance = Faker()
+        _faker_local.current = instance
+    return cast(Faker, instance)
+
+
+class _FakerProxy:
+    """Proxy that forwards all attribute access to the current thread's Faker."""
+
+    __slots__ = ()
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(_get_faker(), name)
+
+
+# Single process-wide proxy; each thread gets its own Faker via _get_faker().
+faker: Faker = _FakerProxy()  # type: ignore[assignment]
+BaseFactory.__faker__ = faker
 
 
 def seed(seed_value: int) -> None:
-    """Seed the shared Faker instance for reproducible data.
+    """Seed the current thread's Faker instance for reproducible data.
 
     Args:
         seed_value: Integer seed; same value produces the same sequence of values.
     """
-    faker.seed_instance(seed_value)
+    _get_faker().seed_instance(seed_value)
 
 
-def use_faker(instance: Faker) -> None:
-    """Use a custom Faker instance for both Capper and Polyfactory.
+def use_faker(instance: Faker | None) -> None:
+    """Use a custom Faker instance for the current thread only.
 
-    Replaces the module-level faker and Polyfactory's BaseFactory.__faker__
-    so that one instance (e.g. a locale-specific Faker) is used everywhere.
-    Call before building any models.
-
-    Note: The shared faker is not thread-safe. Do not call use_faker() from
-    multiple threads while other threads are building models.
+    Sets the Faker used by Capper and Polyfactory for this thread (e.g. a
+    locale-specific Faker). Other threads are unaffected. Call before building
+    any models in this thread. Pass None to reset this thread to a new default
+    Faker (e.g. after temporarily using a custom instance).
 
     Args:
-        instance: The Faker instance to use (e.g. Faker('de_DE')).
+        instance: The Faker instance to use (e.g. Faker('de_DE')), or None to reset.
     """
-    _set_faker_instance(instance)
+    if instance is None or instance is faker:
+        try:
+            del _faker_local.current
+        except AttributeError:
+            pass
+    else:
+        _faker_local.current = instance
 
 
 def _install_pydantic_schema() -> None:

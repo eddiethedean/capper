@@ -126,6 +126,8 @@ BaseFactory.__faker__ = my_faker
 
 If you only set **`YourFactory.__faker__ = Faker('de_DE')`** on a specific factory, Polyfactory’s built-in types will use that locale, but Capper-generated fields still use the global `capper.faker`. For full locale control, use `use_faker(my_faker)` or set both as above.
 
+**Multi-threaded tests:** Each thread has its own Faker. In multi-threaded tests, call **`seed(n)`** or **`use_faker(instance)`** inside each thread that needs reproducible or locale-specific data.
+
 ## Run the examples
 
 From the repo root (with Capper installed):

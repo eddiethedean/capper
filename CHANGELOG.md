@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Thread-safe per-thread Faker:** Each thread now has its own Faker instance. The module-level `faker` is a proxy that forwards to the current thread's Faker; `seed(n)` and `use_faker(instance)` only affect the current thread. No API changes; safe for concurrent use from multiple threads. See [compatibility](docs/compatibility.md#thread-safety).
+
 ## [0.3.0] - 2026-02-24
 
 ### Added

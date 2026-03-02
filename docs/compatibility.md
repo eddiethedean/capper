@@ -4,7 +4,7 @@ Version support and upgrade guidance for Capper. For deprecations, see [Deprecat
 
 ## Thread safety
 
-The module-level **faker** instance and **use_faker()** are process-wide. Do not call **use_faker()** from multiple threads while other threads are building models; the shared Faker is not thread-safe for switching and concurrent use. Use a single Faker (or call **use_faker()** only once at startup) when using Capper from multiple threads.
+Capper is **thread-safe**: each thread has its own Faker instance. The module-level **faker** is a proxy that forwards to the current thread's Faker. **`seed(n)`** and **`use_faker(instance)`** only affect the current thread, so you can safely call them from multiple threads or use different locales per thread. Polyfactory's factory builds use the same per-thread Faker.
 
 ## Supported versions
 

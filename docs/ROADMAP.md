@@ -88,7 +88,7 @@ High-level development phases and current status. See [capper_package_plan.md](c
 - [ ] Add lightweight performance regression checks in CI (e.g. “no >X% slowdown” for key benchmarks or representative tests).
 - [ ] Raise and hold coverage targets (e.g. ≥ 98–99% for `capper/`) and keep `--cov-report=term-missing` as a release gate.
 - [ ] Add targeted tests for edge cases around seeding, `use_faker()`, locales, and Hypothesis registration failures.
-- [ ] Document known limitations (e.g. global Faker and `use_faker()` are not thread-safe) and recommended patterns for multi-threaded test runs.
+- [x] Document known limitations and recommended patterns for multi-threaded use. **Done:** Capper is now thread-safe (per-thread Faker via proxy); see [compatibility](compatibility.md#thread-safety) and [reproducible data](user_guides/reproducible_data.md).
 
 ---
 

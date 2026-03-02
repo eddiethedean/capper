@@ -178,23 +178,17 @@ def test_seed_reproducibility(seeded_faker: None) -> None:
 
 
 def test_use_faker_switches_global_faker() -> None:
-    """use_faker() switches the global Faker; next factory build uses that instance (e.g. seed)."""
+    """use_faker() sets this thread's Faker; next factory build uses that instance (e.g. seed)."""
     from faker import Faker
-    from polyfactory.factories.base import BaseFactory
     from polyfactory.factories.pydantic_factory import ModelFactory
     from pydantic import BaseModel
 
     from capper import Name, use_faker
-    from capper import faker as default_faker
 
     try:
         custom = Faker()
         custom.seed_instance(123)
         use_faker(custom)
-        from capper.base import faker as module_faker
-
-        assert module_faker is custom
-        assert BaseFactory.__faker__ is custom
 
         class User(BaseModel):
             name: Name
@@ -209,4 +203,4 @@ def test_use_faker_switches_global_faker() -> None:
         user2 = UserFactory.build()
         assert user1.name == user2.name
     finally:
-        use_faker(default_faker)
+        use_faker(None)
