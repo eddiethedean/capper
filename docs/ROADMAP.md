@@ -82,6 +82,46 @@ High-level development phases and current status. See [capper_package_plan.md](c
 
 ---
 
+## Phase 9 — Reliability, performance, and coverage
+
+- [ ] Benchmark core flows (Pydantic models, dataclasses, Hypothesis strategies, CLI) and publish baseline numbers.
+- [ ] Add lightweight performance regression checks in CI (e.g. “no >X% slowdown” for key benchmarks or representative tests).
+- [ ] Raise and hold coverage targets (e.g. ≥ 98–99% for `capper/`) and keep `--cov-report=term-missing` as a release gate.
+- [ ] Add targeted tests for edge cases around seeding, `use_faker()`, locales, and Hypothesis registration failures.
+- [ ] Document known limitations (e.g. global Faker and `use_faker()` are not thread-safe) and recommended patterns for multi-threaded test runs.
+
+---
+
+## Phase 10 — API stability and versioning
+
+- [ ] Define the “public API surface” explicitly (what is guaranteed vs. internal) and document it in the API reference.
+- [ ] Tighten or add deprecation warnings for any APIs that may change before 1.0.0.
+- [ ] Document a clear semantic-versioning policy for Capper (what counts as breaking vs. minor vs. patch).
+- [ ] Audit type names, behaviors, and error messages for consistency before declaring them stable.
+- [ ] Add a short “Upgrading between minor versions” section with concrete examples (especially around Faker/Polyfactory upgrades).
+
+---
+
+## Phase 11 — Ecosystem, integrations, and UX
+
+- [ ] Add deeper usage guides and examples for common stacks (e.g. FastAPI/Pydantic, Django + Pydantic, dataclasses/attrs-heavy codebases).
+- [ ] Provide small “starter templates” or snippets for typical test setups (pytest fixtures, factory modules, Hypothesis strategies).
+- [ ] Document patterns for organizing large projects that rely heavily on Capper types (naming conventions, module layout).
+- [ ] Polish CLI UX (help text, error messages, discoverability) based on real-world feedback.
+- [ ] Highlight and document third-party “capper type packs” or integrations (if/when they exist) in the docs.
+
+---
+
+## Phase 12 — Production-ready 1.0 and long-term maintenance
+
+- [ ] Cut a 1.0.0 release once Phase 9–11 items are complete and the API surface is stable.
+- [ ] Establish a support and maintenance policy (e.g. supported Python and dependency versions, backport scope).
+- [ ] Add or refine project governance docs (issue and PR templates, code of conduct, release checklist).
+- [ ] Monitor and respond to bug reports around Faker and Polyfactory upstream changes; document any needed workarounds.
+- [ ] Periodically review docs, examples, and CI to ensure they stay aligned with real-world usage and current best practices.
+
+---
+
 ## Milestones / releases
 
 | Version | Focus |
@@ -89,7 +129,9 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.1.0  | Initial structure, 17 semantic types, optional Pydantic, multi-backend, tests, examples. |
 | 0.2.0  | 26 types, Phase 5 (Hypothesis strategies, CLI, Ruff/mypy in CI, docstrings), user guides, notebooks. |
 | 0.3.0  | Phase 8: Compatibility doc, deprecation policy, Python 3.10+ minimum (dropped 3.9). **Current.** |
-| 0.4.0+ | Phase 6/7 content (33 types, use_faker(), CONTRIBUTING, API reference, CHANGELOG, etc.) — already in repo; future release. |
+| 0.4.0  | Ship remaining Phase 6/7 content (33 types, `use_faker()`, CONTRIBUTING, API reference, CHANGELOG, etc.); tighten CI and docs around them. |
+| 0.5.0  | Phase 9 focus: reliability, performance baselines, stricter coverage and CI gating. |
+| 1.0.0  | Phases 10–12: explicit public API, versioning policy, ecosystem docs, and a production-ready, stable release. |
 
 ---
 
