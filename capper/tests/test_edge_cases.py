@@ -160,14 +160,15 @@ def test_faker_field_invalid_provider_raises_attribute_error() -> None:
 
 def test_faker_field_non_callable_provider_raises_type_error() -> None:
     """faker_field() raises when the provider is not callable at generation time."""
-    from unittest.mock import patch
+    from unittest.mock import MagicMock, patch
 
-    from capper import Sentence
+    from capper import Sentence, fields
     from capper.fields import faker_field
 
     gen = faker_field(Sentence)
-    with patch("capper.fields.faker") as mock_faker:
-        mock_faker.sentence = "not_callable"
+    mock_faker = MagicMock()
+    mock_faker.sentence = "not_callable"
+    with patch.object(fields, "faker", mock_faker):
         with pytest.raises(TypeError, match="is not callable"):
             gen()
 
@@ -182,13 +183,17 @@ def test_faker_field_no_provider_raises_at_class_definition() -> None:
 
 def test_strategies_for_type_non_callable_provider_raises_type_error() -> None:
     """strategies.for_type() raises when the provider exists but is not callable."""
+    from unittest.mock import patch
+
+    from faker import Faker
+
     from capper import strategies
 
     class NameType(FakerType):
         faker_provider = "name"
 
-    probe = __import__("faker").Faker()
+    probe = Faker()
     with patch.object(probe, "name", "not_callable"):
-        with patch("capper.strategies.Faker", return_value=probe):
+        with patch.object(strategies, "Faker", return_value=probe):
             with pytest.raises(TypeError, match="is not callable"):
                 strategies.for_type(NameType)

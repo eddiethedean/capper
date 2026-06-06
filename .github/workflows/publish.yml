@@ -45,7 +45,7 @@ jobs:
           pip install -e ".[dev]"
 
       - name: Run tests
-        run: pytest capper/tests -v
+        run: pytest capper/tests -v -m "not benchmark"
 
   build-and-publish:
     needs: test
