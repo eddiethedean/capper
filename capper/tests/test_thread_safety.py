@@ -3,7 +3,6 @@
 import threading
 
 from capper import Name, seed, use_faker
-from capper.base import _get_faker
 
 
 def test_use_faker_per_thread_isolation() -> None:
@@ -15,10 +14,10 @@ def test_use_faker_per_thread_isolation() -> None:
     results: dict[str, str] = {}
 
     def thread_de() -> None:
-        use_faker(Faker("de_DE"))
-        assert _get_faker() is not None
+        de = Faker("de_DE")
+        de.seed_instance(0)
+        use_faker(de)
 
-        # Build a model; German locale often produces umlauts in names
         class User(BaseModel):
             name: Name
 
@@ -26,11 +25,12 @@ def test_use_faker_per_thread_isolation() -> None:
             pass
 
         user = UserFactory.build()
-        results["de"] = user.name
+        results["de"] = str(user.name)
 
     def thread_en() -> None:
-        use_faker(Faker("en_US"))
-        assert _get_faker() is not None
+        en = Faker("en_US")
+        en.seed_instance(0)
+        use_faker(en)
 
         class User(BaseModel):
             name: Name
@@ -39,7 +39,7 @@ def test_use_faker_per_thread_isolation() -> None:
             pass
 
         user = UserFactory.build()
-        results["en"] = user.name
+        results["en"] = str(user.name)
 
     t1 = threading.Thread(target=thread_de)
     t2 = threading.Thread(target=thread_en)
@@ -50,6 +50,7 @@ def test_use_faker_per_thread_isolation() -> None:
 
     assert "de" in results and "en" in results
     assert len(results["de"]) > 0 and len(results["en"]) > 0
+    assert results["de"] != results["en"], "Each thread must use its own locale-specific Faker"
 
 
 def test_seed_per_thread_isolation() -> None:
@@ -89,7 +90,9 @@ def test_seed_per_thread_isolation() -> None:
     t2.join()
 
     assert "42" in results and "99" in results
-    # Same seed in same thread gives same result when run again
+    assert results["42"] != results["99"], (
+        "Different seeds must produce different values per thread"
+    )
     seed(42)
 
     class User(BaseModel):

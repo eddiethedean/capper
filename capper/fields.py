@@ -53,18 +53,18 @@ def faker_field(type_class: type[T], **kwargs: Any) -> Callable[[], T]:
             f"{type_class.__name__} has no faker_provider. "
             "Use a Capper type that defines faker_provider (e.g. Sentence, Date)."
         )
-    if not hasattr(faker, provider):
-        raise AttributeError(
-            f"Faker has no provider {provider!r} (used by {type_class.__name__}). "
-            "Check faker_provider on the type."
-        )
-    provider_fn = getattr(faker, provider)
-    if not callable(provider_fn):
-        raise TypeError(f"Faker.{provider} is not callable (used by {type_class.__name__}).")
     provider_kwargs = dict(getattr(type_class, "faker_kwargs", None) or {})
     provider_kwargs.update(kwargs)
 
     def _generate() -> T:
+        if not hasattr(faker, provider):
+            raise AttributeError(
+                f"Faker has no provider {provider!r} (used by {type_class.__name__}). "
+                "Check faker_provider on the type."
+            )
+        provider_fn = getattr(faker, provider)
+        if not callable(provider_fn):
+            raise TypeError(f"Faker.{provider} is not callable (used by {type_class.__name__}).")
         value = provider_fn(**provider_kwargs)
         return type_class(str(value))
 

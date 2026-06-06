@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 _No unreleased changes yet._
 
+## [1.1.1] - 2026-06-06
+
+### Fixed
+
+- **`faker_field` thread-local Faker:** Resolve the Faker provider at call time so `use_faker()` and reset behave consistently with `seed()` and Polyfactory registration.
+- **CLI TSV output:** Escape embedded newlines and tabs so multiline values (e.g. `Address`) produce one physical line per logical row.
+- **CLI robustness:** Stream rows instead of materializing all output in memory; reject invalid `--count` values; cap maximum row count.
+- **Hypothesis isolation:** Use a per-draw `Faker` instance so property-based tests do not advance the shared thread-local sequence.
+- **Polyfactory providers:** Return `FakerType` instances from registered providers (fixes dataclass/attrs paths that previously received plain `str`).
+- **Input validation:** `seed()` requires `int`; `use_faker()` requires `Faker | None`; empty or non-string `faker_provider` fails at class definition with clear errors.
+- **Version metadata:** Catch only `PackageNotFoundError` when reading package version from metadata.
+
+### Changed
+
+- **Test suite hardening:** Stronger behavioral assertions for thread isolation, CLI seed determinism, locale switching, Pydantic coercion, and FakerType wrapping; expanded coverage for all exported types, CLI edge cases, docs examples, and Hypothesis strategies.
+- **Documentation:** Clarify that `FakerType` subclasses are nominal string wrappers (Pydantic does not validate email/UUID format on manual input) and that `capper.faker` is a thread-local proxy, not a concrete `Faker` instance.
+
 ## [1.1.0] - 2026-03-02
 
 ### Added
@@ -76,7 +93,8 @@ _No unreleased changes yet._
 - Optional Pydantic support; multi-backend (Pydantic, dataclasses, attrs).
 - Unit tests and usage examples.
 
-[Unreleased]: https://github.com/eddiethedean/capper/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/eddiethedean/capper/compare/v1.1.1...HEAD
+[1.1.1]: https://github.com/eddiethedean/capper/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/eddiethedean/capper/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/eddiethedean/capper/compare/v0.5.0...v1.0.0
 [0.5.0]: https://github.com/eddiethedean/capper/compare/v0.4.1...v0.5.0

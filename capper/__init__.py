@@ -7,11 +7,12 @@ and use st.from_type(Name) for property-based tests.
 """
 
 try:
+    from importlib.metadata import PackageNotFoundError
     from importlib.metadata import version as _version
 
     __version__ = _version("capper")
-except Exception:  # Package not installed (e.g. dev tree) or metadata missing
-    __version__ = "1.1.0"
+except PackageNotFoundError:
+    __version__ = "1.1.1"
 
 from .barcode import EAN8, EAN13
 from .base import FakerType, faker, seed, use_faker

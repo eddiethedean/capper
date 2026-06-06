@@ -13,7 +13,16 @@ REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 @pytest.mark.parametrize(
     "script",
-    ["getting_started", "models_and_factories", "reproducible_data", "custom_types"],
+    [
+        "getting_started",
+        "models_and_factories",
+        "reproducible_data",
+        "custom_types",
+        "django_patterns",
+        "fastapi_pydantic",
+        "dataclasses_and_attrs",
+        "test_setup_templates",
+    ],
 )
 def test_docs_example_runs(script: str) -> None:
     """Run each docs example script; fail if it exits non-zero."""

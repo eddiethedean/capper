@@ -8,11 +8,18 @@ from __future__ import annotations
 
 from typing import Type, TypeVar, cast
 
-from hypothesis import strategies as st
+try:
+    from hypothesis import strategies as st
+except ImportError as exc:
+    raise ImportError(
+        "capper.strategies requires hypothesis. Install with: pip install 'capper[hypothesis]'"
+    ) from exc
+
+from faker import Faker
 
 import capper
 
-from .base import FakerType, faker
+from .base import FakerType
 from .registry import build_type_registry
 
 T = TypeVar("T", bound=FakerType)
@@ -26,20 +33,26 @@ def for_type(cls: Type[T]) -> st.SearchStrategy[T]:
     provider = getattr(cls, "faker_provider", None)
     if not provider:
         raise ValueError(f"{cls.__name__} has no faker_provider")
-    if not hasattr(faker, provider):
+    if not isinstance(provider, str):
+        raise TypeError(
+            f"{cls.__name__}.faker_provider must be a non-empty str, got {type(provider).__name__}"
+        )
+    kwargs = dict(getattr(cls, "faker_kwargs", None) or {})
+    probe = Faker()
+    if not hasattr(probe, provider):
         raise AttributeError(
             f"Faker has no provider {provider!r} (used by {cls.__name__}). "
             "Check faker_provider on the type."
         )
-    if not callable(getattr(faker, provider)):
+    if not callable(getattr(probe, provider)):
         raise TypeError(f"Faker.{provider} is not callable (used by {cls.__name__}).")
-    kwargs = getattr(cls, "faker_kwargs", None) or {}
 
     @st.composite
     def _draw(draw: st.DrawFn) -> T:
         seed_val = draw(st.integers(min_value=0, max_value=2**32 - 1))
-        faker.seed_instance(seed_val)
-        value = getattr(faker, provider)(**kwargs)
+        local_faker = Faker()
+        local_faker.seed_instance(seed_val)
+        value = getattr(local_faker, provider)(**kwargs)
         return cls(str(value))
 
     return cast(st.SearchStrategy[T], _draw())

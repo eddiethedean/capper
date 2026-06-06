@@ -133,10 +133,11 @@ High-level development phases and current status. See [capper_package_plan.md](c
 | 0.4.1  | Phase 10: public API surface, deprecation helper, and versioning/upgrade guidance. |
 | 0.5.0  | Phase 11: ecosystem docs, UX improvements, and broader integrations. |
 | 1.0.0  | Phase 12 and beyond: long-term maintenance, governance docs, security, and a production-ready, stable release. |
+| 1.1.1  | Test suite hardening, bug fixes (faker_field, CLI TSV, Hypothesis isolation, provider typing), and expanded regression coverage. |
 
 ---
 
-*Last updated: 2026-03-02 (Phase 12 complete; 1.0.0 released).*
+*Last updated: 2026-06-06 (1.1.1 — test hardening and bug-fix release).*
 
 ---
 
